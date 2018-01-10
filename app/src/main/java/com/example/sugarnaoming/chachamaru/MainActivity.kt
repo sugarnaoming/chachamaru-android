@@ -36,28 +36,37 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
   override fun onNavigationItemSelected(item: MenuItem): Boolean {
     // Handle navigation view item clicks here.
-    when (item.itemId) {
-      R.id.nav_camera -> {
-        // Handle the camera action
-      }
-      R.id.nav_gallery -> {
-
-      }
-      R.id.nav_slideshow -> {
-
-      }
-      R.id.nav_manage -> {
-
-      }
-      R.id.nav_share -> {
-
-      }
-      R.id.nav_send -> {
-
-      }
-    }
-
+    val urlsList =  dbController.getUrlsByGroupNameOf(item.title.toString())
+    try {
+      fragmentReplace(UrlsList(urlsList))
+    }catch (e: BadRequestException) { createExceptionDialog(e)
+    }catch (e: Exception) { createExceptionDialog(e) }
     drawer_layout.closeDrawer(GravityCompat.START)
     return true
+  }
+
+  private fun createExceptionDialog(e: Throwable) {
+    val alert = AlertDialog.Builder(this)
+    alert.run {
+      setMessage(e.message)
+      setPositiveButton("OK", { dialogInterface, i -> })
+      show()
+    }
+  }
+
+  private fun fragmentReplace(urlsList: UrlsList) {
+    val fragment = FragmentContentMain() as android.support.v4.app.Fragment
+    fragment.arguments = urlsList.getBundle()
+    val transaction = this.fragmentManager.beginTransaction()
+    transaction.replace(R.id.fragment_container, fragment)
+    transaction.commitNow()
+  }
+
+  private fun firstViewFragment(urlsList: UrlsList) {
+    val fragment = FragmentContentMain() as android.support.v4.app.Fragment
+    fragment.arguments = urlsList.getBundle()
+    val transaction = this.fragmentManager.beginTransaction()
+    transaction.add(R.id.fragment_container, fragment)
+    transaction.commitNow()
   }
 }
