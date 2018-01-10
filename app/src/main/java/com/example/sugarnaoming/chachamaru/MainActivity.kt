@@ -1,22 +1,18 @@
 package com.example.sugarnaoming.chachamaru
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.support.design.widget.NavigationView
 import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import com.example.sugarnaoming.chachamaru.datamodel.*
+import com.example.sugarnaoming.chachamaru.Fragments.FragmentContentMain
+import com.example.sugarnaoming.chachamaru.Datamodel.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import java.io.Serializable
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
   lateinit var fragmentManager:FragmentManager
