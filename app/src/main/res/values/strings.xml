@@ -5,4 +5,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="chose_send_app">アプリケーションを選択</string>
+
+    <!-- Error Messages -->
+    <string name="httpstatus_404">サイトが見つかりませんでした</string>
 </resources>
