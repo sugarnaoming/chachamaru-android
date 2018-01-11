@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val urlsList =  dbController.getUrlsByGroupNameOf(item.title.toString())
     try {
       fragmentReplace(UrlsList(urlsList))
+      title = urlsList.first().groupName
     }catch (e: BadRequestException) { createExceptionDialog(e)
     }catch (e: Exception) { createExceptionDialog(e) }
     drawer_layout.closeDrawer(GravityCompat.START)
