@@ -1,4 +1,4 @@
-package com.example.sugarnaoming.chachamaru.Fragments
+package com.sugarnaoming.chachamaru.Fragments
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -9,9 +9,9 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.sugarnaoming.chachamaru.R
-import com.example.sugarnaoming.chachamaru.Datamodel.BadRequestException
-import com.example.sugarnaoming.chachamaru.Datamodel.UrlsList
+import com.sugarnaoming.chachamaru.R
+import com.sugarnaoming.chachamaru.Datamodel.BadRequestException
+import com.sugarnaoming.chachamaru.Datamodel.UrlsList
 
 class FragmentContentMain: android.support.v4.app.Fragment() {
   lateinit var urlsList: UrlsList

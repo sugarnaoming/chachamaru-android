@@ -1,7 +1,7 @@
-package com.example.sugarnaoming.chachamaru.Api
+package com.sugarnaoming.chachamaru.Api
 
-import com.example.sugarnaoming.chachamaru.Datamodel.ArticleEntity
-import com.example.sugarnaoming.chachamaru.Datamodel.BadRequestException
+import com.sugarnaoming.chachamaru.Datamodel.ArticleEntity
+import com.sugarnaoming.chachamaru.Datamodel.BadRequestException
 import com.rometools.rome.io.SyndFeedInput
 import org.greenrobot.eventbus.EventBus
 import retrofit2.Call

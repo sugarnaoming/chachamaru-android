@@ -1,4 +1,4 @@
-package com.example.sugarnaoming.chachamaru
+package com.sugarnaoming.chachamaru
 
 import android.database.sqlite.SQLiteDatabase
 

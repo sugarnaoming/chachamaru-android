@@ -1,4 +1,4 @@
-package com.example.sugarnaoming.chachamaru
+package com.sugarnaoming.chachamaru
 
 import android.app.Activity
 import android.content.Intent
@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.sugarnaoming.chachamaru.Datamodel.ArticleEntity
+import com.sugarnaoming.chachamaru.Datamodel.ArticleEntity
 
 class ArticlesAdapter(private val articles: List<ArticleEntity>, private val activity: Activity): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
   override fun getItemCount(): Int = articles.size

@@ -1,4 +1,4 @@
-package com.example.sugarnaoming.chachamaru.Fragments
+package com.sugarnaoming.chachamaru.Fragments
 
 import android.app.Activity
 import android.os.Bundle
@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ProgressBar
-import com.example.sugarnaoming.chachamaru.ArticlesAdapter
-import com.example.sugarnaoming.chachamaru.R
-import com.example.sugarnaoming.chachamaru.Api.Api
-import com.example.sugarnaoming.chachamaru.Datamodel.ArticleEntity
-import com.example.sugarnaoming.chachamaru.Datamodel.ArticleConnectionEntity
-import com.example.sugarnaoming.chachamaru.Datamodel.BadRequestException
+import com.sugarnaoming.chachamaru.ArticlesAdapter
+import com.sugarnaoming.chachamaru.R
+import com.sugarnaoming.chachamaru.Api.Api
+import com.sugarnaoming.chachamaru.Datamodel.ArticleEntity
+import com.sugarnaoming.chachamaru.Datamodel.ArticleConnectionEntity
+import com.sugarnaoming.chachamaru.Datamodel.BadRequestException
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.*

@@ -1,6 +1,6 @@
-package com.example.sugarnaoming.chachamaru.Api
+package com.sugarnaoming.chachamaru.Api
 
-import com.example.sugarnaoming.chachamaru.Datamodel.ArticleEntity
+import com.sugarnaoming.chachamaru.Datamodel.ArticleEntity
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Url
