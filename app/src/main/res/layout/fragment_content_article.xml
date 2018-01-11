@@ -31,7 +31,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context="com.example.sugarnaoming.chachamaru.MainActivity"
+    tools:context="com.sugarnaoming.chachamaru.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
   </android.support.v7.widget.RecyclerView>

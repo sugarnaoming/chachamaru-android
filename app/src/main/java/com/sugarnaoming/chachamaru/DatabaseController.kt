@@ -1,7 +1,7 @@
-package com.example.sugarnaoming.chachamaru
+package com.sugarnaoming.chachamaru
 
 import android.content.Context
-import com.example.sugarnaoming.chachamaru.Datamodel.ArticleConnectionEntity
+import com.sugarnaoming.chachamaru.Datamodel.ArticleConnectionEntity
 
 class DatabaseController(applicationContext: Context) {
   private val dbHelper = GetUrlDatabaseHelper(applicationContext)

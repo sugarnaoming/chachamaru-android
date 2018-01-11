@@ -1,4 +1,4 @@
-package com.example.sugarnaoming.chachamaru
+package com.sugarnaoming.chachamaru
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -9,8 +9,8 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.example.sugarnaoming.chachamaru.Fragments.FragmentContentMain
-import com.example.sugarnaoming.chachamaru.Datamodel.*
+import com.sugarnaoming.chachamaru.Fragments.FragmentContentMain
+import com.sugarnaoming.chachamaru.Datamodel.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
