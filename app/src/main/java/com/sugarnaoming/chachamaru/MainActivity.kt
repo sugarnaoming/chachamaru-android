@@ -9,6 +9,8 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.mikepenz.aboutlibraries.Libs
+import com.mikepenz.aboutlibraries.LibsBuilder
 import com.sugarnaoming.chachamaru.Fragments.FragmentContentMain
 import com.sugarnaoming.chachamaru.Datamodel.*
 import kotlinx.android.synthetic.main.activity_main.*
