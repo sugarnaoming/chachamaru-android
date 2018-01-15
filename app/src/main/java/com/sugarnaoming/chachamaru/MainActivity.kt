@@ -56,14 +56,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
   override fun onNavigationItemSelected(item: MenuItem): Boolean {
     // Handle navigation view item clicks here.
-    val urlsList =  dbController.getUrlsByGroupNameOf(item.title.toString())
-    try {
-      fragmentReplace(UrlsList(urlsList))
-      title = urlsList.first().groupName
-    }catch (e: BadRequestException) { createExceptionDialog(e)
-    }catch (e: Exception) { createExceptionDialog(e) }
-    drawer_layout.closeDrawer(GravityCompat.START)
+    if(item.itemId == R.id.about_this_app) {
+      this.createLicensesView()
+    } else {
+      val urlsList = dbController.getUrlsByGroupNameOf(item.title.toString())
+      try {
+        fragmentReplace(UrlsList(urlsList))
+      } catch (e: BadRequestException) {
+        createExceptionDialog(e)
+      } catch (e: Exception) {
+        createExceptionDialog(e)
+      }
+      drawer_layout.closeDrawer(GravityCompat.START)
+    }
     return true
+  }
+
+  private fun createLicensesView() {
+    LibsBuilder()
+        .withLibraries("rome")
+        .withActivityTitle(getString(R.string.about_this_app))
+        .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+        .start(this)
   }
 
   private fun createExceptionDialog(e: Throwable) {
