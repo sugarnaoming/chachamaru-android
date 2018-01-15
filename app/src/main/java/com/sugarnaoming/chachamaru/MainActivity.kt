@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
   }
 
   private fun fragmentReplace(urlsList: UrlsList) {
+    title = urlsList.list.first().groupName
     val fragment = FragmentContentMain() as android.support.v4.app.Fragment
     fragment.arguments = urlsList.getBundle()
     val transaction = this.fragmentManager.beginTransaction()
@@ -98,6 +99,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
   }
 
   private fun firstViewFragment(urlsList: UrlsList) {
+    title = urlsList.list.first().groupName
     val fragment = FragmentContentMain() as android.support.v4.app.Fragment
     fragment.arguments = urlsList.getBundle()
     val transaction = this.fragmentManager.beginTransaction()
