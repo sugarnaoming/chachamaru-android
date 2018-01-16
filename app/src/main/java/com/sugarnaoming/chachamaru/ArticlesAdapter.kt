@@ -21,7 +21,8 @@ class ArticlesAdapter(private val articles: List<ArticleEntity>, private val act
     val articleViewHolder = holder as ArticleViewHolder
     articleViewHolder.title.text = articles[position].title
     articleViewHolder.linkUrl = articles[position].link
-    articleViewHolder.description.text = fromHtml(articles[position].description)
+    val parsedHtml = HTMLParser().removeImgTag(articles[position].description)
+    articleViewHolder.description.text = fromHtml(parsedHtml)
     articleViewHolder.shareButton.setOnClickListener {
       val builder = ShareCompat.IntentBuilder.from(activity)
       builder.run {
