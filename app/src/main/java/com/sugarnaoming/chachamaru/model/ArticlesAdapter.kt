@@ -24,6 +24,13 @@ class ArticlesAdapter(private val articles: List<ArticleEntity>, private val act
     articleViewHolder.linkUrl = articles[position].link
     val parsedHtml = HTMLParser().removeImgTag(articles[position].description)
     articleViewHolder.description.text = fromHtml(parsedHtml)
+    // descriptionが空の時にカラムの高さを0にして潰す
+    if(articleViewHolder.description.text == "") {
+      val layoutParams = articleViewHolder.description.layoutParams as ViewGroup.MarginLayoutParams
+      layoutParams.height = 0
+      layoutParams.topMargin = 0
+      articleViewHolder.description.layoutParams = layoutParams
+    }
     articleViewHolder.shareButton.setOnClickListener {
       val builder = ShareCompat.IntentBuilder.from(activity)
       builder.run {
