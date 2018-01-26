@@ -6,8 +6,20 @@ import com.sugarnaoming.chachamaru.Datamodel.ArticleConnectionEntity
 class DatabaseController(applicationContext: Context) {
   private val dbHelper = GetUrlDatabaseHelper(applicationContext)
 
-  fun getAll(): List<ArticleConnectionEntity> {
-    val sql = "select * from urllist"
+  fun getAllGroupList(): List<String> {
+    val sql = "select * from ${ConfigDatabase.TABLE_NAME_GROUPLIST}"
+    val list: MutableList<String> = mutableListOf()
+    val db = dbHelper.readableDatabase
+    db.rawQuery(sql, null).use {
+      while (it.moveToNext()) {
+        list.add(it.getString(1))
+      }
+    }
+    return list
+  }
+
+  fun getAllUrlList(): List<ArticleConnectionEntity> {
+    val sql = "select * from ${ConfigDatabase.TABLE_NAME_URLLIST}"
     val list: MutableList<ArticleConnectionEntity> = mutableListOf()
     val db = dbHelper.readableDatabase
     db.rawQuery(sql, null).use {
@@ -26,7 +38,7 @@ class DatabaseController(applicationContext: Context) {
   }
 
   fun getUrlsByGroupNameOf(groupName: String): List<ArticleConnectionEntity> {
-    val sql = "select * from urllist where group_name = ?"
+    val sql = "select * from ${ConfigDatabase.TABLE_NAME_URLLIST} where group_name = ?"
     val list: MutableList<ArticleConnectionEntity> = mutableListOf()
     val db = dbHelper.readableDatabase
     db.rawQuery(sql, arrayOf(groupName)).use {
@@ -45,7 +57,7 @@ class DatabaseController(applicationContext: Context) {
   }
 
   fun getGroupNamesWhereUrlExists(): Set<String> {
-    val sql = "select distinct group_name from urllist"
+    val sql = "select distinct group_name from ${ConfigDatabase.TABLE_NAME_URLLIST}"
     val set: MutableSet<String> = mutableSetOf()
     val db = dbHelper.readableDatabase
     db.rawQuery(sql, null).use {
