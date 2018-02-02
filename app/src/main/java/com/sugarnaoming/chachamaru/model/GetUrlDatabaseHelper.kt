@@ -1,4 +1,4 @@
-package com.sugarnaoming.chachamaru
+package com.sugarnaoming.chachamaru.model
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -10,5 +10,11 @@ class GetUrlDatabaseHelper(applicationContext: Context): SQLiteOpenHelper(applic
   }
 
   override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
+  }
+
+  override fun onOpen(db: SQLiteDatabase?) {
+    super.onOpen(db)
+    //if(db!!.isReadOnly)
+    db!!.execSQL(ConfigDatabase.INVOKE_FOREINKEY_SQL)
   }
 }

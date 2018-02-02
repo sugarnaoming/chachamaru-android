@@ -1,4 +1,4 @@
-package com.sugarnaoming.chachamaru.Datamodel
+package com.sugarnaoming.chachamaru.datamodel
 
 class BadRequestException(val httpStatusCode: Int): Throwable() {
     override val message: String?

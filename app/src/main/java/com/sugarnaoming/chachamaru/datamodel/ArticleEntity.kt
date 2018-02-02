@@ -1,4 +1,4 @@
-package com.sugarnaoming.chachamaru.Datamodel
+package com.sugarnaoming.chachamaru.datamodel
 
 import com.squareup.moshi.Json
 

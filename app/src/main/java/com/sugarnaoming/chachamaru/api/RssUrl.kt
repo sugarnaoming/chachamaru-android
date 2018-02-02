@@ -1,4 +1,4 @@
-package com.sugarnaoming.chachamaru.Api
+package com.sugarnaoming.chachamaru.api
 
 import retrofit2.Call
 import retrofit2.http.GET

@@ -1,10 +1,48 @@
-package com.sugarnaoming.chachamaru
+package com.sugarnaoming.chachamaru.model
 
 import android.content.Context
-import com.sugarnaoming.chachamaru.Datamodel.ArticleConnectionEntity
+import android.util.Log
+import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
 
 class DatabaseController(applicationContext: Context) {
   private val dbHelper = GetUrlDatabaseHelper(applicationContext)
+
+  fun updateGroup(newGroupName: String, oldGroupName: String) {
+    val sql = "update ${ConfigDatabase.TABLE_NAME_GROUPLIST} set group_name = ? where group_name = ?"
+    val db = dbHelper.writableDatabase
+    db.execSQL(sql, arrayOf(newGroupName, oldGroupName))
+  }
+
+  fun updateUrl(newTabName: String, newTabUrl: String, isRss: Boolean, oldTabName: String, groupName: String) {
+    val sql = "update ${ConfigDatabase.TABLE_NAME_URLLIST} set title = ?, url = ?, is_rss = ? where title = ? and group_name = ?"
+    val db = dbHelper.writableDatabase
+    db.execSQL(sql, arrayOf(newTabName, newTabUrl, boolToInt(isRss), oldTabName, groupName))
+  }
+
+  fun deleteUrl(tabName: String, tabUrl: String, groupName: String) {
+    val sql = "delete from ${ConfigDatabase.TABLE_NAME_URLLIST} where title = ? and url = ? and group_name = ?"
+    val db = dbHelper.writableDatabase
+    db.execSQL(sql, arrayOf(tabName, tabUrl, groupName))
+  }
+
+  fun deleteGroup(groupName: String) {
+    val sql = "delete from ${ConfigDatabase.TABLE_NAME_GROUPLIST} where group_name = ?"
+    val db = dbHelper.writableDatabase
+    db.execSQL(sql, arrayOf(groupName))
+  }
+
+  fun addUrl(groupName: String, tabName: String, tabUrl: String, isRss: Boolean) {
+    val sql = "insert into ${ConfigDatabase.TABLE_NAME_URLLIST}(title, group_name, url, is_rss)" +
+        "values(?, ?, ?, ?)"
+    val db = dbHelper.writableDatabase
+    db.execSQL(sql, arrayOf(tabName, groupName, tabUrl, boolToInt(isRss)))
+  }
+
+  fun addGroup(groupName: String) {
+    val sql = "insert into ${ConfigDatabase.TABLE_NAME_GROUPLIST}(group_name) values(?)"
+    val db = dbHelper.writableDatabase
+    db.execSQL(sql, arrayOf(groupName))
+  }
 
   fun getAllGroupList(): List<String> {
     val sql = "select * from ${ConfigDatabase.TABLE_NAME_GROUPLIST}"
@@ -16,6 +54,18 @@ class DatabaseController(applicationContext: Context) {
       }
     }
     return list
+  }
+
+  fun howManyTabNamesAreInGroup(groupName: String, tabName: String): Int{
+    val sql = "select count(*) from ${ConfigDatabase.TABLE_NAME_URLLIST} where group_name = ? and title = ?"
+    val db = dbHelper.readableDatabase
+    var count = 0
+    db.rawQuery(sql, arrayOf(groupName, tabName)).use {
+      while(it.moveToNext()) {
+        count = it.getInt(0)
+      }
+    }
+    return count
   }
 
   fun getAllUrlList(): List<ArticleConnectionEntity> {

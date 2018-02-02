@@ -1,14 +1,43 @@
 <resources>
-    <string name="app_name">Chachamaru</string>
+  <string name="app_name">Chachamaru</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+  <string name="chose_send_app">アプリケーションを選択</string>
 
-    <string name="chose_send_app">アプリケーションを選択</string>
-    <string name="about_this_app">アプリについて</string>
+  <string name="about_this_app">アプリについて</string>
 
-    <!-- Error Messages -->
-    <string name="httpstatus_404">サイトが見つかりませんでした</string>
+  <!-- option menu表示 -->
+  <string name="group_edit">グループの編集</string>
+  <string name="group_add">グループの追加</string>
+  <string name="group_delete">グループの削除</string>
+  <string name="tab_edit">タブの編集</string>
+  <string name="tab_add">タブの追加</string>
+  <string name="tab_delete">タブの削除</string>
+  <!-- 削除ダイアログのメッセージ -->
+  <string name="do_delete_current_tab">現在のタブを削除しますか？</string>
+  <string name="do_delete_current_group">現在のグループを削除しますか？</string>
+  <string name="confirmation">確認</string>
+  <string name="there_are_tabs_belonging_to_the_group_you_are_deleting_do_you_really_want_to_delete_this">削除しようとしているグループに所属しているタブがあります。本当に削除しますか？</string>
+  <string name="error">エラー</string>
+  <string name="the_number_of_group_can_not_be_zero">グループの数を0にすることはできません</string>
+  <!-- ダイアログの選択肢 -->
+  <string name="ok__alert_dialog">はい</string>
+  <string name="cancel__alert_dialog">いいえ</string>
+  <!-- OK Cancelボタン -->
+  <string name="ok__button">OK</string>
+  <string name="cancel__button">Cancel</string>
+
+  <string name="please_enter_the_name_of_the_newly_created_group">新しく作成するグループの名前を教えてください</string>
+  <string name="please_enter_the_name_of_the_newly_created_tab">新しく作成するタブの名前を教えてください</string>
+  <string name="please_enter_the_url_to_use_on_the_newly_created_tab">新しく作成するタブで使用するURLを教えてください</string>
+  <string name="please_enter_a_new_group_name">新しいグループの名前を教えてください</string>
+  <string name="please_enter_a_new_tab_name">新しいタブの名前を教えてください</string>
+  <string name="please_enter_the_url_to_use_for_the_new_tab">新しくタブで使用するURLを教えてください</string>
+  <string name="please_select_the_type_of_the_content">コンテンツの形式を選んでください</string>
+  <string name="rss_or_atom_type">RSSまたはatom</string>
+  <string name="json_type">json</string>
+  <!-- Error Messages -->
+  <string name="httpstatus_404">サイトが見つかりませんでした</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.sugarnaoming.chachamaru.Datamodel
+package com.sugarnaoming.chachamaru.datamodel
 
 import android.os.Bundle
 import java.io.Serializable
