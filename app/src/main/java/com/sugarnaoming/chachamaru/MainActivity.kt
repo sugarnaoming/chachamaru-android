@@ -1,5 +1,8 @@
 package com.sugarnaoming.chachamaru
 
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.FragmentManager
@@ -11,14 +14,15 @@ import android.view.Menu
 import android.view.MenuItem
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
-import com.sugarnaoming.chachamaru.Fragments.FragmentContentMain
-import com.sugarnaoming.chachamaru.Datamodel.*
+import com.sugarnaoming.chachamaru.fragments.FragmentContentMain
+import com.sugarnaoming.chachamaru.datamodel.*
+import com.sugarnaoming.chachamaru.model.DatabaseController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-  lateinit var fragmentManager:FragmentManager
-  lateinit var dbController: DatabaseController
+  private lateinit var fragmentManager:FragmentManager
+  private lateinit var currentGroupItem: MenuItem
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -26,22 +30,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     setSupportActionBar(toolbar)
     this.fragmentManager = supportFragmentManager
 
-    val leftMenu = findViewById<NavigationView>(R.id.nav_view).menu
+    ApplicationDataHolder.appContext = applicationContext
 
-    this.dbController = DatabaseController(applicationContext)
-    val menuTitles = dbController.getGroupNamesWhereUrlExists()
-    // menuに動的追加する
-    menuTitles.forEachIndexed { index, groupName ->
-      // p2の数値(index)が順番を表している。これを入れないと表示される順番が保証されない。
-      leftMenu.add(R.id.left_menu_group, Menu.NONE, index, groupName)
-    }
+    updateNavigationMenuInGroup()
+
     val toggle = ActionBarDrawerToggle(
         this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
     drawer_layout.addDrawerListener(toggle)
     toggle.syncState()
     nav_view.setNavigationItemSelectedListener(this)
     try {
-      firstViewFragment(UrlsList(dbController.getUrlsByGroupNameOf(menuTitles.first())))
+      firstViewFragment()
     }catch (e: BadRequestException) { createExceptionDialog(e)
     }catch (e: Exception) {createExceptionDialog(e) }
   }
@@ -54,22 +53,133 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
   }
 
-  override fun onNavigationItemSelected(item: MenuItem): Boolean {
-    // Handle navigation view item clicks here.
-    if(item.itemId == R.id.about_this_app) {
-      this.createLicensesView()
-    } else {
-      val urlsList = dbController.getUrlsByGroupNameOf(item.title.toString())
-      try {
-        fragmentReplace(UrlsList(urlsList))
-      } catch (e: BadRequestException) {
-        createExceptionDialog(e)
-      } catch (e: Exception) {
-        createExceptionDialog(e)
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    when {
+      requestCode == SELECTED_OPTION_MENU && resultCode == IS_RE_DRAWER -> {
+        updateNavigationMenuInGroup()
+        // フラグメントを再描画しないと記事のタイトルだけ表示される問題が起きる
+        fragmentReplace(ApplicationDataHolder.groupName)
       }
-      drawer_layout.closeDrawer(GravityCompat.START)
     }
+  }
+
+  override fun onNavigationItemSelected(item: MenuItem): Boolean {
+    when(item.title) {
+      resources.getString(R.string.about_this_app) -> this.createLicensesView()
+      else -> {
+        this.currentGroupItem = item
+        try {
+          fragmentReplace(item.title.toString())
+        } catch (e: BadRequestException) {
+          createExceptionDialog(e)
+        } catch (e: Exception) {
+          createExceptionDialog(e)
+        }
+      }
+    }
+    drawer_layout.closeDrawer(GravityCompat.START)
     return true
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.config_menu, menu)
+    return super.onCreateOptionsMenu(menu)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    when(item!!.itemId) {
+      R.id.tab_add -> intent(this, TabAddActivity::class.java, true)
+      R.id.tab_edit -> intent(this, TabEditActivity::class.java, true)
+      R.id.tab_delete -> deleteTab()
+      R.id.group_add -> intent(this, GroupAddActivity::class.java, true)
+      R.id.group_edit -> intent(this, GroupEditActivity::class.java, true)
+      R.id.group_delete -> deleteGroup()
+    }
+    return super.onOptionsItemSelected(item)
+  }
+
+  private fun deleteTab() {
+    deleteDialogCreate(R.string.tab_delete, R.string.do_delete_current_tab, { _, _ ->
+        DatabaseController(applicationContext).run {
+          deleteUrl(ApplicationDataHolder.tabName, ApplicationDataHolder.tabUrl, ApplicationDataHolder.groupName)
+          fragmentReplace(ApplicationDataHolder.groupName)
+        }
+    })
+  }
+
+  private fun deleteGroup() {
+    deleteDialogCreate(R.string.group_delete, R.string.do_delete_current_group, { _, _ ->
+        val dbController = DatabaseController(applicationContext)
+        val urls = dbController.getUrlsByGroupNameOf(ApplicationDataHolder.groupName)
+        // グループを0にはできない
+        if(dbController.getAllGroupList().size > 1) {
+          // グループに所属しているタブがある場合は警告を出す
+          if (!urls.isEmpty()) {
+            deleteDialogCreate(R.string.confirmation,
+                R.string.there_are_tabs_belonging_to_the_group_you_are_deleting_do_you_really_want_to_delete_this,
+                { _, _ ->
+                  dbController.run {
+                    deleteGroup(ApplicationDataHolder.groupName)
+                    val groups = updateNavigationMenuInGroup()
+                    fragmentReplace(groups.first())
+                  }
+                })
+          } else {
+            dbController.run {
+              deleteGroup(ApplicationDataHolder.groupName)
+              val groups = updateNavigationMenuInGroup()
+              fragmentReplace(groups.first())
+            }
+          }
+        } else {
+          alertDialogCreate(R.string.error, R.string.the_number_of_group_can_not_be_zero)
+        }
+    })
+  }
+
+  private fun updateNavigationMenuInGroup(): List<String> {
+    val leftMenu = findViewById<NavigationView>(R.id.nav_view).menu
+    leftMenu.clear()
+    // 「このアプリについて」を追加
+    addNavigationMenuItem(leftMenu, R.id.left_menu_licenses_group, listOf(resources.getString(R.string.about_this_app)))
+    val menuTitles = DatabaseController(applicationContext).getAllGroupList()
+    // グループをmenuに追加する
+    addNavigationMenuItem(leftMenu, R.id.left_menu_group, menuTitles)
+    return menuTitles
+  }
+
+  private fun addNavigationMenuItem(menu: Menu, groupId: Int, additionalItems: List<String>) {
+    additionalItems.forEachIndexed { index, item ->
+      menu.add(groupId, Menu.NONE, index, item)
+    }
+  }
+
+  private fun intent(context: Context, cls: Class<*>, isSelectOptionMenu: Boolean) {
+    if(isSelectOptionMenu) {
+      startActivityForResult(Intent(context, cls), SELECTED_OPTION_MENU)
+    } else {
+      startActivity(Intent(context, cls))
+    }
+  }
+
+  private fun alertDialogCreate(title: Int, message: Int) {
+    AlertDialog.Builder(this)
+        .setTitle(title)
+        .setMessage(message)
+        .setPositiveButton(R.string.ok__alert_dialog, null)
+        .show()
+  }
+
+  private fun deleteDialogCreate(title: Int, message: Int, positiveExecuteFun: (dialogInterface: DialogInterface, i: Int) -> Unit ) {
+    AlertDialog.Builder(this)
+          .setTitle(title)
+          .setMessage(message)
+          .setPositiveButton(R.string.ok__alert_dialog, { dialogInterface, i ->
+            positiveExecuteFun(dialogInterface, i)
+          })
+          .setNegativeButton(R.string.cancel__alert_dialog, null)
+          .show()
   }
 
   private fun createLicensesView() {
@@ -84,26 +194,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val alert = AlertDialog.Builder(this)
     alert.run {
       setMessage(e.message)
-      setPositiveButton("OK", { dialogInterface, i -> })
+      setPositiveButton("OK", { _, _ -> })
       show()
     }
   }
 
-  private fun fragmentReplace(urlsList: UrlsList) {
-    title = urlsList.list.first().groupName
+  private fun fragmentReplace(groupName: String) {
+    ApplicationDataHolder.groupName = groupName
+    title = ApplicationDataHolder.groupName
     val fragment = FragmentContentMain() as android.support.v4.app.Fragment
-    fragment.arguments = urlsList.getBundle()
     val transaction = this.fragmentManager.beginTransaction()
     transaction.replace(R.id.fragment_container, fragment)
     transaction.commitNow()
   }
 
-  private fun firstViewFragment(urlsList: UrlsList) {
-    title = urlsList.list.first().groupName
+  private fun firstViewFragment() {
+    // DBに登録されているグループの中で最初のグループを初回に表示する
+    ApplicationDataHolder.groupName = DatabaseController(applicationContext).getAllGroupList().first()
+    title = ApplicationDataHolder.groupName
     val fragment = FragmentContentMain() as android.support.v4.app.Fragment
-    fragment.arguments = urlsList.getBundle()
     val transaction = this.fragmentManager.beginTransaction()
     transaction.add(R.id.fragment_container, fragment)
     transaction.commitNow()
+  }
+
+  companion object {
+    const val SELECTED_OPTION_MENU = 1
+    const val IS_RE_DRAWER = 1
   }
 }

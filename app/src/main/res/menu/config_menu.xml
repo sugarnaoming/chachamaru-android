@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <group>
+    <item
+      android:id="@+id/tab_add"
+      android:title="@string/tab_add"
+      android:orderInCategory="100"/>
+    <item
+      android:id="@+id/tab_edit"
+      android:title="@string/tab_edit"
+      android:orderInCategory="200"/>
+    <item
+      android:id="@+id/tab_delete"
+      android:title="@string/tab_delete"
+      android:orderInCategory="300"/>
+  </group>
+  <group>
+    <item
+      android:id="@+id/group_add"
+      android:title="@string/group_add"
+      android:orderInCategory="400"/>
+    <item
+      android:id="@+id/group_edit"
+      android:title="@string/group_edit"
+      android:orderInCategory="500"/>
+    <item
+      android:id="@+id/group_delete"
+      android:title="@string/group_delete"
+      android:orderInCategory="600"/>
+  </group>
+</menu>

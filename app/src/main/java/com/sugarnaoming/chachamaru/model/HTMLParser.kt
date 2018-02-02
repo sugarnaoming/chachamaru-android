@@ -1,10 +1,10 @@
-package com.sugarnaoming.chachamaru
+package com.sugarnaoming.chachamaru.model
 
 import org.jsoup.Jsoup
 
 class HTMLParser {
   fun removeImgTag(targetHtml: String): String {
-    val html = "$HTML_PREFIX$targetHtml$HTML_SUFFIX"
+    val html = "${HTML_PREFIX}$targetHtml${HTML_SUFFIX}"
     val document = Jsoup.parse(html)
     document.getElementsByTag("img").remove()
     document.getElementsByTag("a")

@@ -7,8 +7,5 @@
       android:id="@+id/left_menu_group">
     </group>
     <group android:id="@+id/left_menu_licenses_group">
-        <item
-          android:id="@+id/about_this_app"
-          android:title="@string/about_this_app" />
     </group>
 </menu>

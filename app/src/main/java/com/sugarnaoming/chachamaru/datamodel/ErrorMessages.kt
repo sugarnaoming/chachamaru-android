@@ -1,4 +1,4 @@
-package com.sugarnaoming.chachamaru.Datamodel
+package com.sugarnaoming.chachamaru.datamodel
 
 object ErrorMessages {
   val httpStatus_404 = "サイトが見つかりませんでした"
