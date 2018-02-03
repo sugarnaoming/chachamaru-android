@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.*
 import com.sugarnaoming.chachamaru.MainActivity.Companion.IS_RE_DRAWER
+import com.sugarnaoming.chachamaru.errors.TabError
+import com.sugarnaoming.chachamaru.errors.UnexpectedError
+import com.sugarnaoming.chachamaru.errors.UrlParseError
 import com.sugarnaoming.chachamaru.model.DatabaseController
 import com.sugarnaoming.chachamaru.model.Errors
 import kotlinx.android.synthetic.main.activity_tab_edit.*
+import java.net.MalformedURLException
 import java.net.URL
 
 class TabEditActivity : AppCompatActivity() {
@@ -43,10 +47,14 @@ class TabEditActivity : AppCompatActivity() {
           val dbController = DatabaseController(this)
           if(dbController.howManyTabNamesAreInGroup(ApplicationDataHolder.groupName, tabName.text.toString()) == 0) {
             var isUrlParseSucceed = true
-            try{ URL(tabUrl.text.toString())
+            try {
+              URL(tabUrl.text.toString())
+            }catch (e: MalformedURLException) {
+              isUrlParseSucceed = false
+              Errors().showMessage(this, UrlParseError())
             }catch (e: Exception) {
               isUrlParseSucceed = false
-              Errors().showMessage(ApplicationDataHolder.appContext!!, e)
+              Errors().showMessage(this, UnexpectedError())
             }
             if(isUrlParseSucceed) {
               DatabaseController(applicationContext).updateUrl(tabName.text.toString(),
@@ -54,14 +62,10 @@ class TabEditActivity : AppCompatActivity() {
               activityFinish()
             }
           } else {
-            //TODO
-            //同名タブの作成禁止
-            Errors().showMessage(this, "グループ内でタブの名前が重複しています")
+            Errors().showMessage(this, TabError(TabError.NAME_DUPLICATE))
           }
         } else {
-          //TODO
-          //タブ名とURLの空文字禁止
-          Errors().showMessage(this, "タブ名とURLは空にできません")
+          Errors().showMessage(this, TabError(TabError.NAME_OR_URL_BLANK))
         }
       } else {
         finish()

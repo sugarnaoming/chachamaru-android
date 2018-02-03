@@ -6,14 +6,13 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sugarnaoming.chachamaru.ApplicationDataHolder
 import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
 import com.sugarnaoming.chachamaru.R
-import com.sugarnaoming.chachamaru.datamodel.BadRequestException
+import com.sugarnaoming.chachamaru.errors.BadRequestException
 import com.sugarnaoming.chachamaru.model.Cache
 import com.sugarnaoming.chachamaru.model.DatabaseController
 

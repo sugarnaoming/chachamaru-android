@@ -4,32 +4,33 @@ import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ProgressBar
-import android.widget.Toast
 import com.sugarnaoming.chachamaru.R
 import com.sugarnaoming.chachamaru.api.Api
 import com.sugarnaoming.chachamaru.ApplicationDataHolder
 import com.sugarnaoming.chachamaru.datamodel.ArticleEntity
 import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
-import com.sugarnaoming.chachamaru.datamodel.BadRequestException
 import com.sugarnaoming.chachamaru.model.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import java.util.*
 
 class FragmentContentArticle: android.support.v4.app.Fragment() {
   private lateinit var articleConnectionInfo: ArticleConnectionEntity
   private lateinit var recyclerView: RecyclerView
   private lateinit var _view: View
+  private var error: Errors? = null
   private val articles: MutableList<ArticleEntity> = mutableListOf()
 
   // 選択されたタブが画面に表示された時にAPIを実行
   override fun setUserVisibleHint(isVisibleToUser: Boolean) {
     super.setUserVisibleHint(isVisibleToUser)
+    // Subscribeされたエラーの中で現在表示中のタブで起きた最初のエラーだけを取得する
+    error = Errors(true)
+    if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this)
+    EventBus.getDefault().register(this)
     this.articleConnectionInfo = arguments.getSerializable("ArticleConnectionInfo") as ArticleConnectionEntity
     ApplicationDataHolder.tabName = this.articleConnectionInfo.title
     ApplicationDataHolder.tabUrl = this.articleConnectionInfo.url
@@ -37,20 +38,18 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
     if (isVisibleToUser) {
       // URLがキャッシュされている場合はリクエストを行わない
       if (Cache.isNotExistsCachedUrl(articleConnectionInfo.url, articleConnectionInfo.title)) {
-        try {
-          Api().run(this.articleConnectionInfo.url, this.articleConnectionInfo.isRssUrl)
-        } catch (e: BadRequestException) {
-          Errors().showMessage(ApplicationDataHolder.appContext!!, e)
-        } catch (e: Exception) {
-          Errors().showMessage(ApplicationDataHolder.appContext!!, e)
-        }
-        EventBus.getDefault().register(this)
+        Api().run(this.articleConnectionInfo.url, this.articleConnectionInfo.isRssUrl)
       }
     } else {
-      if (EventBus.getDefault().isRegistered(this)) {
-        EventBus.getDefault().unregister(this)
-      }
+      // 表示しているタブが変化した場合にErrorsインスタンスを削除する
+      error = null
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    error = null
+    error = Errors(true)
   }
 
   override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -98,8 +97,8 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
   }
 
   @Subscribe
-  fun onGetArticlesFailure(failure: SubscribeFailure) {
+  fun onFailureSubscribe(failure: SubscribeFailure) {
     this._view.findViewById<ProgressBar>(R.id.progressBar).visibility = View.INVISIBLE
-    Errors().showMessage(ApplicationDataHolder.appContext!!, failure.t)
+    error!!.showMessage(activity, failure.t)
   }
 }

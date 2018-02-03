@@ -15,7 +15,7 @@ import android.view.MenuItem
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.sugarnaoming.chachamaru.fragments.FragmentContentMain
-import com.sugarnaoming.chachamaru.datamodel.*
+import com.sugarnaoming.chachamaru.errors.BadRequestException
 import com.sugarnaoming.chachamaru.model.DatabaseController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
