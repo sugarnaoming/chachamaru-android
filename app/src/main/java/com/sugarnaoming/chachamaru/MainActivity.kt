@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
   override fun onNavigationItemSelected(item: MenuItem): Boolean {
     when(item.title) {
-      resources.getString(R.string.about_this_app) -> this.createLicensesView()
+      resources.getString(R.string.about_licenses) -> this.createLicensesView()
       else -> {
         this.currentGroupItem = item
         try {
@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val leftMenu = findViewById<NavigationView>(R.id.nav_view).menu
     leftMenu.clear()
     // 「このアプリについて」を追加
-    addNavigationMenuItem(leftMenu, R.id.left_menu_licenses_group, listOf(resources.getString(R.string.about_this_app)))
+    addNavigationMenuItem(leftMenu, R.id.left_menu_licenses_group, listOf(resources.getString(R.string.about_licenses)))
     val menuTitles = DatabaseController(applicationContext).getAllGroupList()
     // グループをmenuに追加する
     addNavigationMenuItem(leftMenu, R.id.left_menu_group, menuTitles)
@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
   private fun createLicensesView() {
     LibsBuilder()
         .withLibraries("rome", "jsoup")
-        .withActivityTitle(getString(R.string.about_this_app))
+        .withActivityTitle(getString(R.string.about_licenses))
         .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
         .start(this)
   }
