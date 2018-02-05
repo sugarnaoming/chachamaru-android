@@ -27,8 +27,8 @@ object ErrorMessages {
 
   fun groupError(errorType: Int): String {
     return when(errorType) {
-      GroupError.NAME_BLANK -> "グループの名前を空にはできません"
-      GroupError.NAME_DUPLICATE -> "既に同じ名前のグループが存在します"
+      GroupError.NAME_BLANK -> "グループの名前を空にはできません\n空白文字だけもダメですよ"
+      GroupError.NAME_DUPLICATE -> "既に同じ名前のグループが存在します\n新しいグループ名を考えてみてください"
       else -> UNEXPECTED_ERROR_MESSAGE
     }
   }
@@ -45,8 +45,8 @@ object ErrorMessages {
 
   fun tabError(errorType: Int): String {
     return when(errorType) {
-      TabError.NAME_DUPLICATE -> "グループ内でタブの名前が重複しています"
-      TabError.NAME_OR_URL_BLANK -> "タブの名前とURLは空にできません"
+      TabError.NAME_DUPLICATE -> "グループ内でタブの名前が重複しています\n新しいタブ名を考えて見てください"
+      TabError.NAME_OR_URL_BLANK -> "タブの名前とURLは空にできません\n空白文字だけも許しませんよ"
       else -> UNEXPECTED_ERROR_MESSAGE
     }
   }
@@ -54,7 +54,7 @@ object ErrorMessages {
   private fun clientErrorMessage(code: Int): String {
     return when(code) {
       403 -> "アクセスが禁止されています"
-      404 or 410 or 423 -> "サイトが見つかりませんでした"
+      404 or 410 or 423 -> "サイトが見つかりませんでした\nURLが間違っているか、サイトがなくなっています"
       408 -> "リクエストがタイムアウトしました"
       else -> UNEXPECTED_ERROR_MESSAGE
     }
