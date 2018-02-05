@@ -11,7 +11,8 @@
     <dimen name="card_body_padding">8dp</dimen>
     <dimen name="card_body_margin">12dp</dimen>
     <!-- Article内のShareボタンの設定 -->
-    <dimen name="card_share_button_left_margin">4dp</dimen>
+    <dimen name="card_share_button_left_margin">2dp</dimen>
+    <dimen name="card_share_button_bottom_margin">2dp</dimen>
     <!-- Article内のdescriptionの設定 -->
     <dimen name="card_desc_top_margin">4dp</dimen>
 

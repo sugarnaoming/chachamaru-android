@@ -32,7 +32,7 @@
         android:id="@+id/shareButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="@dimen/card_share_button_bottom_margin"
         android:layout_marginStart="@dimen/card_share_button_left_margin"
         android:scaleType="fitXY"
         android:background="#00000000"
