@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
@@ -88,6 +89,10 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
     // リクエストしたurlをキャッシュ
     Cache.add(requestedUrl, ApplicationDataHolder.tabName)
     if (responseIsSucceed) {
+      if(this.articles.size > 0) {
+        this.articles.removeAll(this.articles)
+        recyclerView.adapter.notifyDataSetChanged()
+      }
       responseBody?.forEachIndexed { i, article ->
         this.articles.add(article)
         recyclerView.adapter.notifyItemInserted(i)
