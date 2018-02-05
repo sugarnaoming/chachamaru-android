@@ -184,7 +184,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
   private fun createLicensesView() {
     LibsBuilder()
-        .withLibraries("rome")
+        .withLibraries("rome", "jsoup")
         .withActivityTitle(getString(R.string.about_this_app))
         .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
         .start(this)
