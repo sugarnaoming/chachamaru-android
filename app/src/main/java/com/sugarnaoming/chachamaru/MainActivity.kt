@@ -4,12 +4,17 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.ColorRes
 import android.support.design.widget.NavigationView
 import android.support.v4.app.FragmentManager
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.mikepenz.aboutlibraries.Libs
@@ -65,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
   }
 
   override fun onNavigationItemSelected(item: MenuItem): Boolean {
-    when(item.title) {
+    when(item.title.toString()) {
       resources.getString(R.string.about_licenses) -> this.createLicensesView()
       else -> {
         this.currentGroupItem = item
@@ -138,6 +143,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     })
   }
 
+  private fun setTextColorForMenuItem(menuItem: MenuItem, @ColorRes color: Int) {
+    val spanStr = SpannableString(menuItem.title.toString())
+    spanStr.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, color)), 0, spanStr.length, 0)
+    menuItem.title = spanStr
+  }
+
+  private fun resetAllMenuItemsTextColor(navigationView: NavigationView) {
+    for (i in 0 until navigationView.menu.size())
+      setTextColorForMenuItem(navigationView.menu.getItem(i), R.color.primary_text_default_material_dark)
+  }
+
   private fun updateNavigationMenuInGroup(): List<String> {
     val leftMenu = findViewById<NavigationView>(R.id.nav_view).menu
     leftMenu.clear()
@@ -200,6 +216,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
   }
 
   private fun fragmentReplace(groupName: String) {
+    resetAllMenuItemsTextColor(findViewById(R.id.nav_view))
+    val navView: NavigationView = findViewById(R.id.nav_view)
+    for(i in 0 until navView.menu.size()) {
+      if(navView.menu.getItem(i).title.toString() == groupName) {
+        setTextColorForMenuItem(findViewById<NavigationView>(R.id.nav_view).menu.getItem(i), R.color.colorAccent)
+        break
+      }
+    }
     ApplicationDataHolder.groupName = groupName
     title = ApplicationDataHolder.groupName
     val fragment = FragmentContentMain() as android.support.v4.app.Fragment
@@ -209,6 +233,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
   }
 
   private fun firstViewFragment() {
+    resetAllMenuItemsTextColor(findViewById(R.id.nav_view))
+    setTextColorForMenuItem(findViewById<NavigationView>(R.id.nav_view).menu.getItem(1), R.color.colorAccent)
     // DBに登録されているグループの中で最初のグループを初回に表示する
     ApplicationDataHolder.groupName = DatabaseController(applicationContext).getAllGroupList().first()
     title = ApplicationDataHolder.groupName
