@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import com.sugarnaoming.chachamaru.MainActivity.Companion.IS_RE_DRAWER
+import com.sugarnaoming.chachamaru.errors.GroupError
 import com.sugarnaoming.chachamaru.model.DatabaseController
 import com.sugarnaoming.chachamaru.model.Errors
 import kotlinx.android.synthetic.main.activity_group_add.*
@@ -31,10 +32,10 @@ class GroupAddActivity : AppCompatActivity() {
           DatabaseController(ApplicationDataHolder.appContext!!).addGroup(groupName.text.toString())
           activityFinish()
         } else {
-          Errors().showMessage(this, "既に同じグループが存在します")
+          Errors().showMessage(this, GroupError(GroupError.NAME_DUPLICATE))
         }
       } else {
-        Errors().showMessage(this, "グループ名を空にはできません")
+        Errors().showMessage(this, GroupError(GroupError.NAME_BLANK))
       }
     }
   }

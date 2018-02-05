@@ -6,11 +6,14 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
-import android.widget.Toast
 import com.sugarnaoming.chachamaru.MainActivity.Companion.IS_RE_DRAWER
+import com.sugarnaoming.chachamaru.errors.TabError
+import com.sugarnaoming.chachamaru.errors.UnexpectedError
+import com.sugarnaoming.chachamaru.errors.UrlParseError
 import com.sugarnaoming.chachamaru.model.DatabaseController
 import com.sugarnaoming.chachamaru.model.Errors
 import kotlinx.android.synthetic.main.activity_tab_add.*
+import java.net.MalformedURLException
 import java.net.URL
 
 class TabAddActivity : AppCompatActivity() {
@@ -37,24 +40,24 @@ class TabAddActivity : AppCompatActivity() {
             else -> false
           }
           var isUrlParseSucceed = true
-          try { URL(tabUrl.text.toString())
+          try {
+            URL(tabUrl.text.toString())
+          }catch (e: MalformedURLException) {
+            isUrlParseSucceed = false
+            Errors().showMessage(this, UrlParseError())
           }catch (e: Exception) {
             isUrlParseSucceed = false
-            Errors().showMessage(ApplicationDataHolder.appContext!!, e)
+            Errors().showMessage(this, UnexpectedError())
           }
           if(isUrlParseSucceed) {
             dbController.addUrl(groupName, tabName.text.toString(), tabUrl.text.toString(), isRss)
             activityFinish()
           }
         } else {
-          //TODO
-          // トーストで同一名のタブ禁止の旨を表示
-          Errors().showMessage(this, "グループ内でタブの名前が重複しています")
+          Errors().showMessage(this, TabError(TabError.NAME_DUPLICATE))
         }
       } else {
-        //TODO
-        // トーストでカラ文字禁止の旨を表示
-        Errors().showMessage(this, "タブ名とURLは空にできません")
+        Errors().showMessage(this, TabError(TabError.NAME_OR_URL_BLANK))
       }
     }
     findViewById<Button>(R.id.tab_add_cancel_button).setOnClickListener { finish() }
