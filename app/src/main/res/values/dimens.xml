@@ -7,16 +7,14 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="first_view_text">20sp</dimen>
 
-    <!-- Card表示のマージン設定 -->
-    <dimen name="card_margin_otu_line">8dp</dimen>
-    <dimen name="card_margin_start">8dp</dimen>
-    <dimen name="card_margin_bottom">4dp</dimen>
-    <dimen name="card_margin_top">4dp</dimen>
-    <dimen name="card_margin_end">8dp</dimen>
-    <!-- Card表示で両端以外のCardの設定 -->
-    <dimen name="card_margin_in_top">2dp</dimen>
-    <dimen name="card_margin_in_bottom">2dp</dimen>
+    <!-- Article本体部分の設定 -->
+    <dimen name="card_body_padding">8dp</dimen>
+    <dimen name="card_body_margin">12dp</dimen>
+    <!-- Article内のShareボタンの設定 -->
+    <dimen name="card_share_button_left_margin">2dp</dimen>
+    <dimen name="card_share_button_bottom_margin">2dp</dimen>
+    <!-- Article内のdescriptionの設定 -->
+    <dimen name="card_desc_top_margin">4dp</dimen>
 
-    <!-- Card表示内での画像の最大サイズ -->
-    <dimen name="card_image_size_max">40dp</dimen>
+
 </resources>

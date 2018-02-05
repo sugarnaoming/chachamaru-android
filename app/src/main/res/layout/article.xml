@@ -9,17 +9,14 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/card_margin_otu_line"
+    android:layout_margin="@dimen/card_body_margin"
+    android:padding="@dimen/card_body_padding"
     android:background="@drawable/shape_rounded_corners_10dp"
     android:orientation="vertical">
 
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_marginStart="@dimen/card_margin_start"
-      android:layout_marginEnd="@dimen/card_margin_end"
-      android:layout_marginTop="@dimen/card_margin_top"
-      android:layout_marginBottom="@dimen/card_margin_bottom"
       android:orientation="horizontal">
 
       <TextView
@@ -35,8 +32,8 @@
         android:id="@+id/shareButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="@dimen/card_share_button_bottom_margin"
+        android:layout_marginStart="@dimen/card_share_button_left_margin"
         android:scaleType="fitXY"
         android:background="#00000000"
         android:src="@drawable/ic_menu_share"/>
@@ -46,10 +43,8 @@
       android:id="@+id/article_description"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginStart="@dimen/card_margin_start"
-      android:layout_marginTop="@dimen/card_margin_in_top"
-      android:layout_marginEnd="@dimen/card_margin_end"
-      android:layout_marginBottom="@dimen/card_margin_bottom"/>
+      android:textColor="@color/articleDescription"
+      android:layout_marginTop="@dimen/card_desc_top_margin"/>
   </LinearLayout>
 
 </LinearLayout>
