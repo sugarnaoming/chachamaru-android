@@ -151,17 +151,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
   private fun resetAllMenuItemsTextColor(navigationView: NavigationView) {
     for (i in 0 until navigationView.menu.size())
-      setTextColorForMenuItem(navigationView.menu.getItem(i), R.color.primary_text_default_material_dark)
+      setTextColorForMenuItem(navigationView.menu.getItem(i), R.color.navigationViewTextColorPrimary)
   }
 
   private fun updateNavigationMenuInGroup(): List<String> {
-    val leftMenu = findViewById<NavigationView>(R.id.nav_view).menu
-    leftMenu.clear()
+    val leftMenu = findViewById<NavigationView>(R.id.nav_view)
+    leftMenu.menu.clear()
     // 「このアプリについて」を追加
-    addNavigationMenuItem(leftMenu, R.id.left_menu_licenses_group, listOf(resources.getString(R.string.about_this_app)))
+    addNavigationMenuItem(leftMenu.menu, R.id.left_menu_licenses_group, listOf(resources.getString(R.string.about_this_app)))
     val menuTitles = DatabaseController(applicationContext).getAllGroupList()
     // グループをmenuに追加する
-    addNavigationMenuItem(leftMenu, R.id.left_menu_group, menuTitles)
+    addNavigationMenuItem(leftMenu.menu, R.id.left_menu_group, menuTitles)
+    resetAllMenuItemsTextColor(leftMenu)
     return menuTitles
   }
 
@@ -220,7 +221,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val navView: NavigationView = findViewById(R.id.nav_view)
     for(i in 0 until navView.menu.size()) {
       if(navView.menu.getItem(i).title.toString() == groupName) {
-        setTextColorForMenuItem(findViewById<NavigationView>(R.id.nav_view).menu.getItem(i), R.color.colorAccent)
+        setTextColorForMenuItem(findViewById<NavigationView>(R.id.nav_view).menu.getItem(i), R.color.colorNavigationViewSelectedText)
         break
       }
     }
@@ -234,7 +235,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
   private fun firstViewFragment() {
     resetAllMenuItemsTextColor(findViewById(R.id.nav_view))
-    setTextColorForMenuItem(findViewById<NavigationView>(R.id.nav_view).menu.getItem(1), R.color.colorAccent)
+    setTextColorForMenuItem(findViewById<NavigationView>(R.id.nav_view).menu.getItem(1), R.color.colorNavigationViewSelectedText)
     // DBに登録されているグループの中で最初のグループを初回に表示する
     ApplicationDataHolder.groupName = DatabaseController(applicationContext).getAllGroupList().first()
     title = ApplicationDataHolder.groupName
