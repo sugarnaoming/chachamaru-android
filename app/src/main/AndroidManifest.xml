@@ -14,19 +14,22 @@
     <activity
       android:name=".MainActivity"
       android:label="@string/app_name"
-      android:theme="@style/ChachaTheme">
+      android:theme="@style/ChachaTheme"
+      android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".ControlViewRelation.GroupControlActivity" />
-    <activity android:name=".ControlViewRelation.TabControlActivity" />
-    <activity android:name=".GroupAddActivity" />
-    <activity android:name=".GroupEditActivity" />
-    <activity android:name=".TabAddActivity" />
-    <activity android:name=".TabEditActivity"></activity>
+    <activity android:name=".GroupAddActivity"
+      android:screenOrientation="portrait"/>
+    <activity android:name=".GroupEditActivity"
+      android:screenOrientation="portrait"/>
+    <activity android:name=".TabAddActivity"
+      android:screenOrientation="portrait"/>
+    <activity android:name=".TabEditActivity"
+      android:screenOrientation="portrait"/>
   </application>
 
 </manifest>
