@@ -42,10 +42,11 @@ class TabEditActivity : AppCompatActivity() {
             R.id.json_edit_radio_button -> false
             else -> false
       }
-      if(isDiffCurrentNameAndUrlAndRss(tabName.text.toString(), tabUrl.text.toString(), isRss)) {
+      if(isDiffCurrentNameOrUrlOrRss(tabName.text.toString(), tabUrl.text.toString(), isRss)) {
         if(tabName.text.toString().isNotBlank() && tabUrl.text.toString().isNotBlank()) {
           val dbController = DatabaseController(this)
-          if(dbController.howManyTabNamesAreInGroup(ApplicationDataHolder.groupName, tabName.text.toString()) == 0) {
+          if(isOldTabNameThenNewTabNameEqual(ApplicationDataHolder.tabName, tabName.text.toString())
+              || isNotExistsTabNameWithinTheGroup(ApplicationDataHolder.groupName, tabName.text.toString())) {
             var isUrlParseSucceed = true
             try {
               URL(tabUrl.text.toString())
@@ -80,7 +81,17 @@ class TabEditActivity : AppCompatActivity() {
     return super.onOptionsItemSelected(item)
   }
 
-  private fun isDiffCurrentNameAndUrlAndRss(name: String, url: String, isRss: Boolean): Boolean {
+  private fun isNotExistsTabNameWithinTheGroup(groupName: String, tabName: String): Boolean {
+    if(DatabaseController(applicationContext).howManyTabNamesAreInGroup(groupName, tabName) == 0) return true
+    return false
+  }
+
+  private fun isOldTabNameThenNewTabNameEqual(old: String, new: String): Boolean {
+    if(old == new) return true
+    return false
+  }
+
+  private fun isDiffCurrentNameOrUrlOrRss(name: String, url: String, isRss: Boolean): Boolean {
     if(name == ApplicationDataHolder.tabName && url == ApplicationDataHolder.tabUrl && ApplicationDataHolder.isRss == isRss ) return false
     return true
   }
