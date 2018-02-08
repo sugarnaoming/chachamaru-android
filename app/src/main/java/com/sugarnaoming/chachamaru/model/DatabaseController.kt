@@ -1,6 +1,7 @@
 package com.sugarnaoming.chachamaru.model
 
 import android.content.Context
+import android.util.Log
 import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
 import com.sugarnaoming.chachamaru.datamodel.ArticleStock
 
@@ -57,19 +58,33 @@ class DatabaseController(applicationContext: Context) {
   }
 
   fun getAllStock(): List<ArticleStock> {
-    val sql = "select group, title, description, url from ${ConfigDatabase.TABLE_NAME_STOCK}"
+    val sql = "select * from ${ConfigDatabase.TABLE_NAME_STOCK}"
     val list: MutableList<ArticleStock> = mutableListOf()
     val db = dbHelper.readableDatabase
     db.rawQuery(sql, null).use {
       while(it.moveToNext()) {
         list.add(ArticleStock(
-            groupName = it.getString(0),
-            title = it.getString(1),
-            description = it.getString(2),
-            url = it.getString(3)))
+            groupName = it.getString(1),
+            title = it.getString(2),
+            description = it.getString(3),
+            url = it.getString(4)))
       }
     }
+    list.forEach {
+      Log.d("DEBUG", it.title)
+    }
     return list
+  }
+
+  fun isNotDuplicateArticleInStock(article: ArticleStock): Boolean {
+    val sql = "select count(*) from ${ConfigDatabase.TABLE_NAME_STOCK} where group_name = ? and title = ?"
+    val db = dbHelper.readableDatabase
+    var count = 0
+    db.rawQuery(sql, arrayOf(article.groupName, article.title)).use {
+      it.moveToNext()
+      count = it.getInt(0)
+    }
+    return count == 0
   }
 
   fun addStock(article: ArticleStock) {

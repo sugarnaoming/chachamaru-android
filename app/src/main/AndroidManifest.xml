@@ -34,7 +34,12 @@
     <activity
       android:name=".TabEditActivity"
       android:screenOrientation="portrait" />
-    <activity android:name=".AboutThisAppActivity"></activity>
+    <activity
+      android:name=".AboutThisAppActivity"
+      android:screenOrientation="portrait" />
+    <activity
+      android:name=".StockActivity"
+      android:screenOrientation="portrait" />
   </application>
 
 </manifest>

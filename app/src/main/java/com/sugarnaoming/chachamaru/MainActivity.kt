@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
   override fun onNavigationItemSelected(item: MenuItem): Boolean {
     when(item.title.toString()) {
       resources.getString(R.string.about_this_app) -> intent(this, AboutThisAppActivity::class.java, false)
+      resources.getString(R.string.read_later) -> intent(this, StockActivity::class.java, false)
       else -> {
         this.currentGroupItem = item
         try {
@@ -158,7 +159,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val leftMenu = findViewById<NavigationView>(R.id.nav_view)
     leftMenu.menu.clear()
     // 「このアプリについて」を追加
-    addNavigationMenuItem(leftMenu.menu, R.id.left_menu_licenses_group, listOf(resources.getString(R.string.about_this_app)))
+    addNavigationMenuItem(leftMenu.menu, R.id.left_menu_option_group, listOf(resources.getString(R.string.about_this_app)))
+    addNavigationMenuItem(leftMenu.menu, R.id.left_menu_option_group, listOf(resources.getString(R.string.read_later)))
     val menuTitles = DatabaseController(applicationContext).getAllGroupList()
     // グループをmenuに追加する
     addNavigationMenuItem(leftMenu.menu, R.id.left_menu_group, menuTitles)
@@ -235,7 +237,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
   private fun firstViewFragment() {
     resetAllMenuItemsTextColor(findViewById(R.id.nav_view))
-    setTextColorForMenuItem(findViewById<NavigationView>(R.id.nav_view).menu.getItem(1), R.color.colorNavigationViewSelectedText)
+    setTextColorForMenuItem(findViewById<NavigationView>(R.id.nav_view).menu.getItem(2), R.color.colorNavigationViewSelectedText)
     // DBに登録されているグループの中で最初のグループを初回に表示する
     ApplicationDataHolder.groupName = DatabaseController(applicationContext).getAllGroupList().first()
     title = ApplicationDataHolder.groupName
