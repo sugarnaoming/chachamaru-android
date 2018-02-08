@@ -15,6 +15,14 @@ class ConfigDatabase {
         "unique(title, group_name)," +
         "foreign key(group_name) references $TABLE_NAME_GROUPLIST(group_name)" +
         "on update cascade on delete cascade)"
+  val getSqlArticleStock: String
+    get() = "create table $TABLE_NAME_STOCK (" +
+        "_id integer primary key autoincrement," +
+        "group_name text not null," +
+        "title text not null," +
+        "description text," +
+        "url text not null," +
+        "unique(title, group_name))"
   val getSqlDefaultInsertToGroupList: String
     get() = "insert into $TABLE_NAME_GROUPLIST (group_name)" +
         "values('はてなブックマーク/新着')," +
@@ -46,6 +54,7 @@ class ConfigDatabase {
   companion object {
     val TABLE_NAME_GROUPLIST = "grouplist"
     val TABLE_NAME_URLLIST = "urllist"
+    val TABLE_NAME_STOCK = "stock"
     val INVOKE_FOREINKEY_SQL = "PRAGMA foreign_keys = ON"
   }
 }
