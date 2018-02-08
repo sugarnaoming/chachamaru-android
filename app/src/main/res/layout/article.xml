@@ -4,14 +4,20 @@
   android:id="@+id/articleOverView"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
+  android:layout_marginStart="@dimen/articleMarginStart"
+  android:layout_marginEnd="@dimen/articleMarginEnd"
+  android:layout_marginTop="@dimen/articleMarginTop"
+  android:layout_marginBottom="@dimen/articleMarginBottom"
+  android:background="@drawable/shape_rounded_corners_10dp"
   android:orientation="vertical">
 
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/card_body_margin"
-    android:padding="@dimen/card_body_padding"
-    android:background="@drawable/shape_rounded_corners_10dp"
+    android:paddingTop="@dimen/cardBodyPaddingTop"
+    android:paddingBottom="@dimen/cardBodyPaddingBottom"
+    android:paddingStart="@dimen/cardBodyPaddingStart"
+    android:paddingEnd="@dimen/cardBodyPaddingEnd"
     android:orientation="vertical">
 
     <LinearLayout
@@ -24,18 +30,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:textColor="@color/articleTitle"
         android:maxLines="2"
         android:ellipsize="end"
         android:layout_weight="1"/>
 
       <ImageButton
         android:id="@+id/shareButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:padding="5dp"
         android:layout_marginBottom="@dimen/card_share_button_bottom_margin"
         android:layout_marginStart="@dimen/card_share_button_left_margin"
         android:scaleType="fitXY"
-        android:background="#00000000"
+        android:background="@color/colorShareButtonBackground"
         android:src="@drawable/ic_menu_share"/>
     </LinearLayout>
 
@@ -43,6 +51,8 @@
       android:id="@+id/article_description"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:maxLines="4"
+      android:ellipsize="end"
       android:textColor="@color/articleDescription"
       android:layout_marginTop="@dimen/card_desc_top_margin"/>
   </LinearLayout>
