@@ -131,6 +131,7 @@
       android:layout_height="wrap_content"
       android:layout_marginEnd="32dp"
       android:text="@string/ok__button"
+      android:padding="@dimen/button_padding"
       app:layout_constraintBaseline_toBaselineOf="@+id/tab_add_cancel_button"
       app:layout_constraintEnd_toEndOf="parent" />
 
@@ -141,6 +142,7 @@
       android:layout_marginStart="32dp"
       android:layout_marginTop="24dp"
       android:text="@string/cancel__button"
+      android:padding="@dimen/button_padding"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/chose_content_type_radio_group_add_activity" />
   </android.support.constraint.ConstraintLayout>
