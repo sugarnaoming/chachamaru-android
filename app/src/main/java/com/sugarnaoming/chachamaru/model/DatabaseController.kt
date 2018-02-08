@@ -1,8 +1,8 @@
 package com.sugarnaoming.chachamaru.model
 
 import android.content.Context
-import android.util.Log
 import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
+import com.sugarnaoming.chachamaru.datamodel.ArticleStock
 
 class DatabaseController(applicationContext: Context) {
   private val dbHelper = GetUrlDatabaseHelper(applicationContext)
@@ -54,6 +54,35 @@ class DatabaseController(applicationContext: Context) {
       }
     }
     return list
+  }
+
+  fun getAllStock(): List<ArticleStock> {
+    val sql = "select group, title, description, url from ${ConfigDatabase.TABLE_NAME_STOCK}"
+    val list: MutableList<ArticleStock> = mutableListOf()
+    val db = dbHelper.readableDatabase
+    db.rawQuery(sql, null).use {
+      while(it.moveToNext()) {
+        list.add(ArticleStock(
+            groupName = it.getString(0),
+            title = it.getString(1),
+            description = it.getString(2),
+            url = it.getString(3)))
+      }
+    }
+    return list
+  }
+
+  fun addStock(article: ArticleStock) {
+    val sql = "insert into ${ConfigDatabase.TABLE_NAME_STOCK}(group_name, title, description, url)" +
+        "values(?, ?, ?, ?)"
+    val db = dbHelper.writableDatabase
+    db.execSQL(sql, arrayOf(article.groupName, article.title, article.description, article.url))
+  }
+
+  fun deleteStock(article: ArticleStock) {
+    val sql = "delete from ${ConfigDatabase.TABLE_NAME_STOCK} where group_name = ? and title = ?"
+    val db = dbHelper.writableDatabase
+    db.execSQL(sql, arrayOf(article.groupName, article.title))
   }
 
   fun howManyTabNamesAreInGroup(groupName: String, tabName: String): Int{
