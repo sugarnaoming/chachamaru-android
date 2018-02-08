@@ -44,7 +44,6 @@ class TabEditActivity : AppCompatActivity() {
       }
       if(isDiffCurrentNameOrUrlOrRss(tabName.text.toString(), tabUrl.text.toString(), isRss)) {
         if(tabName.text.toString().isNotBlank() && tabUrl.text.toString().isNotBlank()) {
-          val dbController = DatabaseController(this)
           if(isOldTabNameThenNewTabNameEqual(ApplicationDataHolder.tabName, tabName.text.toString())
               || isNotExistsTabNameWithinTheGroup(ApplicationDataHolder.groupName, tabName.text.toString())) {
             var isUrlParseSucceed = true
@@ -82,7 +81,7 @@ class TabEditActivity : AppCompatActivity() {
   }
 
   private fun isNotExistsTabNameWithinTheGroup(groupName: String, tabName: String): Boolean {
-    if(DatabaseController(applicationContext).howManyTabNamesAreInGroup(groupName, tabName) == 0) return true
+    if(DatabaseController(this).howManyTabNamesAreInGroup(groupName, tabName) == 0) return true
     return false
   }
 
