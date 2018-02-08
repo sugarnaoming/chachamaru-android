@@ -6,7 +6,7 @@
 
   <string name="chose_send_app">アプリケーションを選択</string>
 
-  <string name="about_licenses">ライセンス</string>
+  <string name="about_this_app">このアプリについて</string>
 
   <!-- option menu表示 -->
   <string name="group_edit">グループの編集</string>
@@ -28,6 +28,12 @@
   <!-- OK Cancelボタン -->
   <string name="ok__button">OK</string>
   <string name="cancel__button">Cancel</string>
+  <!-- 作者名 -->
+  <string name="author">開発: sugarnaoming</string>
+  <!-- 作者github URL -->
+  <string name="github_url">https://github.com/sugarnaoming</string>
+  <!-- License -->
+  <string name="license">オープンソースライセンス</string>
 
   <string name="please_enter_the_name_of_the_newly_created_group">新しく作成するグループの名前を教えてください</string>
   <string name="please_enter_the_name_of_the_newly_created_tab">新しく作成するタブの名前を教えてください</string>
