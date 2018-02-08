@@ -20,9 +20,12 @@
     <item name="android:background">@color/colorPopupBackground</item>
     <item name="android:textColor">@color/textColorPrimary</item>
   </style>
+
+  <style name="TabText" parent="TextAppearance.Design.Tab">
+    <item name="textAllCaps">false</item>
+  </style>
   
   <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
 
   <style name="ChachaTheme" parent="AppTheme" />
 

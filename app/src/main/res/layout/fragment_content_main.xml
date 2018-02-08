@@ -9,6 +9,7 @@
       android:id="@+id/tabs"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+    app:tabTextAppearance="@style/TabText"
     app:tabIndicatorColor="@color/colorTabIndicator"
     app:tabBackground="@color/colorTabBackground"
     app:tabTextColor="@color/colorTabText"
