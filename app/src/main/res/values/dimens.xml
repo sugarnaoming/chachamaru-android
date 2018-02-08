@@ -27,9 +27,9 @@
   <dimen name="recyclerPaddingTop">16dp</dimen>
   <dimen name="recyclerPaddingBottom">16dp</dimen>
   <!-- this appのフォントサイズ -->
-  <dimen name="author">20sp</dimen>
-  <dimen name="url">20sp</dimen>
-  <dimen name="license">20sp</dimen>
+  <dimen name="author">16sp</dimen>
+  <dimen name="url">16sp</dimen>
+  <dimen name="license">16sp</dimen>
   <!-- this appのボタンサイズ -->
   <dimen name="license_button_padding">20dp</dimen>
   <!-- タブ・グループの追加・編集のボタンサイズ -->
