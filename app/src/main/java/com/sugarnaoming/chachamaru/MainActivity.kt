@@ -14,11 +14,8 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.mikepenz.aboutlibraries.Libs
-import com.mikepenz.aboutlibraries.LibsBuilder
 import com.sugarnaoming.chachamaru.fragments.FragmentContentMain
 import com.sugarnaoming.chachamaru.errors.BadRequestException
 import com.sugarnaoming.chachamaru.model.DatabaseController
@@ -200,14 +197,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
           .setNegativeButton(R.string.cancel__alert_dialog, null)
           .show()
   }
-
-//  private fun createLicensesView() {
-//    LibsBuilder()
-//        .withLibraries("rome", "jsoup")
-//        .withActivityTitle(getString(R.string.about_licenses))
-//        .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
-//        .start(this)
-//  }
 
   private fun createExceptionDialog(e: Throwable) {
     val alert = AlertDialog.Builder(this)

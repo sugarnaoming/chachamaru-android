@@ -31,7 +31,6 @@ object Cache {
     * この仕様のため移動元と移動先の画面が連続していない場合はキャッシュをクリアする処理を実装した
     * */
 
-    //TODO
     //Queueに追加する段階でQueueの先頭のタイトルをタブの順番に当てはめて、Queueに追加するものを該当タブの前後と比較すればループせずに済みそう
     if (urlCache.size >= 2) {
       val dbController = DatabaseController(ApplicationDataHolder.appContext!!)
