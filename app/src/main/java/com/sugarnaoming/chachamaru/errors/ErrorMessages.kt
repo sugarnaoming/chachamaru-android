@@ -51,6 +51,8 @@ object ErrorMessages {
     }
   }
 
+  fun StockError(): String = "既に「後で読む」に登録されています"
+
   private fun clientErrorMessage(code: Int): String {
     return when(code) {
       403 -> "アクセスが禁止されています"
