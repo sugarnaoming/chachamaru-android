@@ -1,7 +1,6 @@
 package com.sugarnaoming.chachamaru.model
 
 import android.content.Context
-import android.util.Log
 import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
 import com.sugarnaoming.chachamaru.datamodel.ArticleStock
 
@@ -69,9 +68,6 @@ class DatabaseController(applicationContext: Context) {
             description = it.getString(3),
             url = it.getString(4)))
       }
-    }
-    list.forEach {
-      Log.d("DEBUG", it.title)
     }
     return list
   }

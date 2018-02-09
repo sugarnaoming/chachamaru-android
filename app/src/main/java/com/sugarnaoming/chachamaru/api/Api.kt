@@ -1,6 +1,5 @@
 package com.sugarnaoming.chachamaru.api
 
-import android.util.Log
 import com.rometools.rome.io.FeedException
 import com.rometools.rome.io.SyndFeedInput
 import com.sugarnaoming.chachamaru.datamodel.*
