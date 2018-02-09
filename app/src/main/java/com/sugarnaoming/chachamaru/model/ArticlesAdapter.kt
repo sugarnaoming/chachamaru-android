@@ -1,6 +1,7 @@
 package com.sugarnaoming.chachamaru.model
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -20,6 +21,7 @@ import com.sugarnaoming.chachamaru.ApplicationDataHolder
 import com.sugarnaoming.chachamaru.datamodel.ArticleEntity
 import com.sugarnaoming.chachamaru.R
 import com.sugarnaoming.chachamaru.datamodel.ArticleStock
+import com.sugarnaoming.chachamaru.errors.StockError
 
 class ArticlesAdapter(private val articles: List<ArticleEntity>, private val activity: Activity): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
   override fun getItemCount(): Int = articles.size
@@ -67,6 +69,8 @@ class ArticlesAdapter(private val articles: List<ArticleEntity>, private val act
             popupWindow.dismiss()
           } else {
             popupWindow.dismiss()
+            val error = Errors()
+            error.showMessage(context, StockError())
           }
         }
         popupWindow.run {
