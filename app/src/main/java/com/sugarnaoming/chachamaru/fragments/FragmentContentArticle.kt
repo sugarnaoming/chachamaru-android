@@ -2,6 +2,8 @@ package com.sugarnaoming.chachamaru.fragments
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -15,6 +17,7 @@ import com.sugarnaoming.chachamaru.ApplicationDataHolder
 import com.sugarnaoming.chachamaru.datamodel.ArticleEntity
 import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
 import com.sugarnaoming.chachamaru.model.*
+import kotlinx.android.synthetic.main.fragment_content_article.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -61,6 +64,14 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
     super.onViewCreated(view, savedInstanceState)
     this.recyclerView = view!!.findViewById(R.id.article_recycler_view)
     this._view = view
+    val swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
+    swipeRefresh.run {
+      setColorSchemeColors(ContextCompat.getColor(context, R.color.colorAccent))
+      setProgressBackgroundColorSchemeColor(ContextCompat.getColor(context, R.color.colorPrimary))
+      setOnRefreshListener {
+        Api().run(articleConnectionInfo.url, articleConnectionInfo.isRssUrl)
+      }
+    }
     this.recyclerView.run {
       setHasFixedSize(true)
       layoutManager = LinearLayoutManager(_view.context)
@@ -81,6 +92,7 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
     val responseIsSucceed = succeed.response.isSucceed
     val responseBody = succeed.response.body
     val requestedUrl = succeed.response.targetUrl
+    swipe_refresh.isRefreshing = false
     // 最新のリクエスト以外を破棄
     // 非同期のため連続でAPIを実行した場合に古いリクエストが配達されることがある
     if ((this.articleConnectionInfo.url != requestedUrl)) {
