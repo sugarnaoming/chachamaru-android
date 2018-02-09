@@ -34,6 +34,10 @@
   <string name="github_url">https://github.com/sugarnaoming</string>
   <!-- License -->
   <string name="license">オープンソースライセンス</string>
+  <!-- Stockのタイトル -->
+  <string name="read_later">後で読む</string>
+  <!-- Stockへの追加 -->
+  <string name="add_stock">「後で読む」に追加</string>
 
   <string name="please_enter_the_name_of_the_newly_created_group">新しく作成するグループの名前を教えてください</string>
   <string name="please_enter_the_name_of_the_newly_created_tab">新しく作成するタブの名前を教えてください</string>

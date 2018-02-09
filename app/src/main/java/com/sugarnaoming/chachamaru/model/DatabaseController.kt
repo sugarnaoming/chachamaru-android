@@ -3,6 +3,7 @@ package com.sugarnaoming.chachamaru.model
 import android.content.Context
 import android.util.Log
 import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
+import com.sugarnaoming.chachamaru.datamodel.ArticleStock
 
 class DatabaseController(applicationContext: Context) {
   private val dbHelper = GetUrlDatabaseHelper(applicationContext)
@@ -54,6 +55,49 @@ class DatabaseController(applicationContext: Context) {
       }
     }
     return list
+  }
+
+  fun getAllStock(): List<ArticleStock> {
+    val sql = "select * from ${ConfigDatabase.TABLE_NAME_STOCK}"
+    val list: MutableList<ArticleStock> = mutableListOf()
+    val db = dbHelper.readableDatabase
+    db.rawQuery(sql, null).use {
+      while(it.moveToNext()) {
+        list.add(ArticleStock(
+            groupName = it.getString(1),
+            title = it.getString(2),
+            description = it.getString(3),
+            url = it.getString(4)))
+      }
+    }
+    list.forEach {
+      Log.d("DEBUG", it.title)
+    }
+    return list
+  }
+
+  fun isNotDuplicateArticleInStock(article: ArticleStock): Boolean {
+    val sql = "select count(*) from ${ConfigDatabase.TABLE_NAME_STOCK} where group_name = ? and title = ?"
+    val db = dbHelper.readableDatabase
+    var count = 0
+    db.rawQuery(sql, arrayOf(article.groupName, article.title)).use {
+      it.moveToNext()
+      count = it.getInt(0)
+    }
+    return count == 0
+  }
+
+  fun addStock(article: ArticleStock) {
+    val sql = "insert into ${ConfigDatabase.TABLE_NAME_STOCK}(group_name, title, description, url)" +
+        "values(?, ?, ?, ?)"
+    val db = dbHelper.writableDatabase
+    db.execSQL(sql, arrayOf(article.groupName, article.title, article.description, article.url))
+  }
+
+  fun deleteStock(article: ArticleStock) {
+    val sql = "delete from ${ConfigDatabase.TABLE_NAME_STOCK} where group_name = ? and title = ?"
+    val db = dbHelper.writableDatabase
+    db.execSQL(sql, arrayOf(article.groupName, article.title))
   }
 
   fun howManyTabNamesAreInGroup(groupName: String, tabName: String): Int{

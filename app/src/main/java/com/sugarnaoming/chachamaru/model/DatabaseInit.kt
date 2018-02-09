@@ -8,6 +8,7 @@ class DatabaseInit(private val db: SQLiteDatabase) {
       val conf = ConfigDatabase()
       execSQL(conf.getSqlCreateGroupListTable)
       execSQL(conf.getSqlCreateUrlListTable)
+      execSQL(conf.getSqlArticleStock)
       execSQL(conf.getSqlDefaultInsertToGroupList)
       execSQL(conf.getSqlDefaultInsertToUrlList)
     }
