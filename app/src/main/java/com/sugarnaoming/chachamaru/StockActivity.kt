@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.MenuItem
 import com.sugarnaoming.chachamaru.datamodel.ArticleStock
-import com.sugarnaoming.chachamaru.model.DatabaseController
-import com.sugarnaoming.chachamaru.model.StockArticleAdapter
+import com.sugarnaoming.chachamaru.model.database.DatabaseController
+import com.sugarnaoming.chachamaru.model.adapter.StockArticleAdapter
 import kotlinx.android.synthetic.main.activity_stock.*
 
 

@@ -8,8 +8,8 @@ import com.sugarnaoming.chachamaru.MainActivity.Companion.IS_RE_DRAWER
 import com.sugarnaoming.chachamaru.errors.TabError
 import com.sugarnaoming.chachamaru.errors.UnexpectedError
 import com.sugarnaoming.chachamaru.errors.UrlParseError
-import com.sugarnaoming.chachamaru.model.DatabaseController
-import com.sugarnaoming.chachamaru.model.Errors
+import com.sugarnaoming.chachamaru.model.database.DatabaseController
+import com.sugarnaoming.chachamaru.errors.Errors
 import kotlinx.android.synthetic.main.activity_tab_edit.*
 import java.net.MalformedURLException
 import java.net.URL

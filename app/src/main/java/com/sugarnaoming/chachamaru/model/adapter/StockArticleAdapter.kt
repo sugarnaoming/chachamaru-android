@@ -1,4 +1,4 @@
-package com.sugarnaoming.chachamaru.model
+package com.sugarnaoming.chachamaru.model.adapter
 
 import android.app.Activity
 import android.content.Intent
@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.sugarnaoming.chachamaru.R
 import com.sugarnaoming.chachamaru.datamodel.ArticleStock
+import com.sugarnaoming.chachamaru.model.database.DatabaseController
 
 class StockArticleAdapter(private val stocks: MutableList<ArticleStock>, private val activity: Activity): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemCount(): Int = stocks.size

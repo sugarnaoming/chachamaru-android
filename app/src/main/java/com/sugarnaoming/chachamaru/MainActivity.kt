@@ -18,7 +18,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.sugarnaoming.chachamaru.fragments.FragmentContentMain
 import com.sugarnaoming.chachamaru.errors.BadRequestException
-import com.sugarnaoming.chachamaru.model.DatabaseController
+import com.sugarnaoming.chachamaru.model.database.DatabaseController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 

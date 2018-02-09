@@ -7,8 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import com.sugarnaoming.chachamaru.MainActivity.Companion.IS_RE_DRAWER
 import com.sugarnaoming.chachamaru.errors.GroupError
-import com.sugarnaoming.chachamaru.model.DatabaseController
-import com.sugarnaoming.chachamaru.model.Errors
+import com.sugarnaoming.chachamaru.model.database.DatabaseController
+import com.sugarnaoming.chachamaru.errors.Errors
 import kotlinx.android.synthetic.main.activity_group_add.*
 
 class GroupAddActivity : AppCompatActivity() {

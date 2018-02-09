@@ -1,6 +1,7 @@
 package com.sugarnaoming.chachamaru.model
 
 import com.sugarnaoming.chachamaru.ApplicationDataHolder
+import com.sugarnaoming.chachamaru.model.database.DatabaseController
 import java.util.*
 
 object Cache {
