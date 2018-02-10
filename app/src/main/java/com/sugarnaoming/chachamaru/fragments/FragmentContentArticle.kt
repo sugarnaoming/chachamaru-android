@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,9 @@ import com.sugarnaoming.chachamaru.api.Api
 import com.sugarnaoming.chachamaru.ApplicationDataHolder
 import com.sugarnaoming.chachamaru.datamodel.ArticleEntity
 import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
+import com.sugarnaoming.chachamaru.errors.Errors
 import com.sugarnaoming.chachamaru.model.*
+import com.sugarnaoming.chachamaru.model.adapter.ArticlesAdapter
 import kotlinx.android.synthetic.main.fragment_content_article.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

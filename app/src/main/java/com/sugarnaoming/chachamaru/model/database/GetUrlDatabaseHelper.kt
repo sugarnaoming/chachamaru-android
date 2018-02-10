@@ -1,4 +1,4 @@
-package com.sugarnaoming.chachamaru.model
+package com.sugarnaoming.chachamaru.model.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

@@ -14,7 +14,7 @@ import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
 import com.sugarnaoming.chachamaru.R
 import com.sugarnaoming.chachamaru.errors.BadRequestException
 import com.sugarnaoming.chachamaru.model.Cache
-import com.sugarnaoming.chachamaru.model.DatabaseController
+import com.sugarnaoming.chachamaru.model.database.DatabaseController
 
 class FragmentContentMain: android.support.v4.app.Fragment() {
   private lateinit var urlsList: List<ArticleConnectionEntity>

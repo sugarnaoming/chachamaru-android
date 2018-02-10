@@ -1,15 +1,14 @@
-package com.sugarnaoming.chachamaru.model
+package com.sugarnaoming.chachamaru.errors
 
 import android.app.AlertDialog
 import android.content.Context
-import android.util.Log
 import com.sugarnaoming.chachamaru.R
 
 /*
 * onlyOnceがtrueの場合は同一インスタンス内の場合showAlertが一度しか実行されない
 * */
 class Errors(private val onlyOnce: Boolean = false) {
-  init { Errors.executeCount = 0 }
+  init { executeCount = 0 }
   fun showMessage(context: Context, t: Throwable) {
     showAlert(context, t.message.toString())
   }
@@ -23,8 +22,8 @@ class Errors(private val onlyOnce: Boolean = false) {
   }
 
   private fun showAlert(context: Context, message: String) {
-    if(onlyOnce && Errors.executeCount != 0) return
-    Errors.executeCount++
+    if(onlyOnce && executeCount != 0) return
+    executeCount++
     val alert = AlertDialog.Builder(context)
     alert.run {
       setTitle("エラー")
