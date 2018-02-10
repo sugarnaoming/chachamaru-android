@@ -29,7 +29,9 @@ class ConfigDatabase {
         "('はてなブックマーク/人気')," +
         "('Qiita')," +
         "('Web')," +
-        "('情報全般')"
+        "('総合')," +
+        "('ガジェット')," +
+        "('Develop')"
   val getSqlDefaultInsertToUrlList: String
     get() {
       val hatebuEntryBaseUrl = "http://b.hatena.ne.jp/entrylist"
@@ -49,12 +51,27 @@ class ConfigDatabase {
           "('ウィークリーランキング', 'Qiita', '$qiitaBaseUrl/weekly', $rssFalse)," +
           "('人気ランキング', 'Qiita', '$qiitaBaseUrl/popular', $rssFalse)," +
           "('コリス', 'Web', 'http://coliss.com/feed/', $rssTrue)," +
-          "('GIGAZINE', '情報全般', 'http://feed.rssad.jp/rss/gigazine/rss_atom', $rssTrue)"
+          "('GIGAZINE', '総合', 'http://feed.rssad.jp/rss/gigazine/rss_atom', $rssTrue)," +
+          "('GIZMODO', '総合', 'https://www.gizmodo.jp/index.xml', $rssTrue)," +
+          "('PhotoshopVIP', 'Web', 'http://photoshopvip.net/feed', $rssTrue)," +
+          "('Build Insider', 'Develop', 'https://www.buildinsider.net/rss', $rssTrue)," +
+          "('CodeZine', 'Develop', 'https://codezine.jp/rss/new/20/index.xml', $rssTrue)," +
+          "('@IT', 'Develop', 'http://rss.rssad.jp/rss/itmatmarkit/rss.xml', $rssTrue)," +
+          "('TechCrunch Japan', '総合', 'http://jp.techcrunch.com/feed/', $rssTrue)," +
+          "('TechWave', '総合', 'http://techwave.jp/feed', $rssTrue)," +
+          "('creive', 'Web', 'https://creive.me/feed/', $rssTrue)," +
+          "('ガジェット通信', 'ガジェット', 'http://getnews.jp/feed/ext/orig', $rssTrue)," +
+          "('CNET Japan', '総合', 'http://feeds.japan.cnet.com/rss/cnet/all.rdf', $rssTrue)," +
+          "('ZDNet Japan', '総合', 'http://feeds.japan.zdnet.com/rss/zdnet/all.rdf', $rssTrue)," +
+          "('Engadget Japanes', 'ガジェット', 'http://japanese.engadget.com/rss.xml', $rssTrue)," +
+          "('GGSOKU', 'ガジェット', 'https://ggsoku.com/feed/', $rssTrue)"
     }
   companion object {
     val TABLE_NAME_GROUPLIST = "grouplist"
     val TABLE_NAME_URLLIST = "urllist"
     val TABLE_NAME_STOCK = "stock"
     val INVOKE_FOREINKEY_SQL = "PRAGMA foreign_keys = ON"
+    val DB_VERSION = 1
+    val DB_NAME = "ChaChaMaruDatabase"
   }
 }
