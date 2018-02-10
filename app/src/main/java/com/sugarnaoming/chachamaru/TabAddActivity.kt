@@ -32,7 +32,7 @@ class TabAddActivity : AppCompatActivity() {
     findViewById<Button>(R.id.tab_add_ok_button).setOnClickListener {
       if(tabName.text.toString().isNotBlank() && tabUrl.text.toString().isNotBlank()) {
         val groupName = ApplicationDataHolder.groupName
-        val dbController = DatabaseController(ApplicationDataHolder.appContext!!)
+        val dbController = DatabaseController(this)
         if(dbController.howManyTabNamesAreInGroup(groupName, tabName.text.toString()) == 0) {
           val isRss = when(choseContentType.checkedRadioButtonId) {
             R.id.rss_add_radio_button -> true

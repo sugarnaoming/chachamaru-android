@@ -29,7 +29,7 @@ class GroupAddActivity : AppCompatActivity() {
         val dbController = DatabaseController(this)
         val groupList = dbController.getAllGroupList()
         if(!groupList.contains(groupName.text.toString())) {
-          DatabaseController(ApplicationDataHolder.appContext!!).addGroup(groupName.text.toString())
+          DatabaseController(this).addGroup(groupName.text.toString())
           activityFinish()
         } else {
           Errors().showMessage(this, GroupError(GroupError.NAME_DUPLICATE))
