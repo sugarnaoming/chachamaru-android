@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class GetUrlDatabaseHelper(applicationContext: Context): SQLiteOpenHelper(applicationContext, "GetUrlDatabase", null, 1) {
+class ChaChaMaruDatabaseHelper(applicationContext: Context): SQLiteOpenHelper(applicationContext, ConfigDatabase.DB_NAME, null, ConfigDatabase.DB_VERSION) {
   override fun onCreate(db: SQLiteDatabase?) {
     DatabaseInit(db!!).run()
   }
@@ -14,7 +14,6 @@ class GetUrlDatabaseHelper(applicationContext: Context): SQLiteOpenHelper(applic
 
   override fun onOpen(db: SQLiteDatabase?) {
     super.onOpen(db)
-    //if(db!!.isReadOnly)
     db!!.execSQL(ConfigDatabase.INVOKE_FOREINKEY_SQL)
   }
 }

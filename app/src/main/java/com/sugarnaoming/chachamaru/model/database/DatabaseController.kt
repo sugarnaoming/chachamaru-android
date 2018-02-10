@@ -5,7 +5,7 @@ import com.sugarnaoming.chachamaru.datamodel.ArticleConnectionEntity
 import com.sugarnaoming.chachamaru.datamodel.ArticleStock
 
 class DatabaseController(applicationContext: Context) {
-  private val dbHelper = GetUrlDatabaseHelper(applicationContext)
+  private val dbHelper = ChaChaMaruDatabaseHelper(applicationContext)
 
   fun updateGroup(newGroupName: String, oldGroupName: String) {
     val sql = "update ${ConfigDatabase.TABLE_NAME_GROUPLIST} set group_name = ? where group_name = ?"
