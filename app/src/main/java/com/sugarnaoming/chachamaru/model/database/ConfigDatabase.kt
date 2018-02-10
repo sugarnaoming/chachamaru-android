@@ -34,7 +34,7 @@ class ConfigDatabase {
     get() {
       val hatebuEntryBaseUrl = "http://b.hatena.ne.jp/entrylist"
       val hatebuHotBaseUrl = "http://b.hatena.ne.jp/hotentry"
-      val qiitaBaseUrl = "http://160.16.115.175/api/qiita/rank"
+      val qiitaBaseUrl = "http://sugarnaoming.com/api/qiita/rank"
       val suffix = ".rss"
       val rssTrue = 1
       val rssFalse = 0
