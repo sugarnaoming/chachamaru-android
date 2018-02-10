@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="define_int_rome"></string>
+  <!-- Author section -->
+  <string name="library_rome_author">rometools</string>
+  <string name="library_rome_authorWebsite">https://github.com/rometools/rome</string>
+  <!-- Library section -->
+  <string name="library_rome_libraryName">ROME</string>
+  <string name="library_rome_libraryDescription">RSS parser</string>
+  <string name="library_rome_libraryWebsite">https://rometools.github.io/rome/</string>
+  <string name="library_rome_libraryVersion">1.9.0</string>
+  <!-- OpenSource section -->
+  <string name="library_rome_isOpenSource">true</string>
+  <string name="library_rome_repositoryLink">https://github.com/rometools/rome</string>
+  <!-- ClassPath for autoDetect section -->
+  <string name="library_rome_classPath">com.rometools</string>
+  <!-- License section -->
+  <string name="library_rome_licenseId">apache_2_0</string>
+  <!-- Custom variables section -->
+</resources>
+
+
+

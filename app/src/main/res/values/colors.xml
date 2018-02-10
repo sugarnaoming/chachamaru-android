@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+  <color name="colorPrimary">#33691e</color>
+  <color name="colorPrimaryDark">#003d00</color>
+  <color name="colorPrimaryLight">#124700</color>
+  <color name="colorAccent">#ffd445</color>
+  <color name="textColorPrimary">#FFFFFF</color>
+  <color name="textColorPrimaryDark">#B5B5B5</color>
+  <color name="textColorSecondly">#222222</color>
+  <color name="textColorSecondlyDark">@color/black</color>
+  <color name="windowBackground">#bfbfbf</color>
+  <!-- 固定色 -->
+  <color name="transparent">#00000000</color>
+  <color name="white">#FFFFFF</color>
+  <color name="black">#000000</color>
+  <!-- tabのindicatorの色 -->
+  <color name="colorTabIndicator">@color/colorAccent</color>
+  <!-- tabの背景の色(タブのある部分だけ) -->
+  <color name="colorTabBackground">@color/colorPrimaryLight</color>
+  <!-- tabの背景の色(タブの表示されている行全体) -->
+  <color name="colorTabBarBackground">@color/colorPrimaryLight</color>
+  <!-- tabのテキストの色 -->
+  <color name="colorTabText">@color/textColorPrimaryDark</color>
+  <!-- tabのテキストの色(選択部分）-->
+  <color name="colorTabSelectedText">@color/textColorPrimary</color>
+  <!-- Shareボタンの背景色(透過設定) -->
+  <color name="colorShareButtonBackground">@color/transparent</color>
+  <!-- Shareボタンの色 -->
+  <color name="colorShareButton">@color/colorPrimaryLight</color>
+  <!-- 記事を表示しているカードの色 -->
+  <color name="colorCardLight">#f0f0f0</color>
+  <!-- 記事のタイトル部分の色 -->
+  <color name="articleTitle">@color/textColorSecondlyDark</color>
+  <!-- 記事の説明部分の色 -->
+  <color name="articleDescription">@color/textColorSecondly</color>
+  <!-- オプションメニューのポップアップの背景色 -->
+  <color name="colorPopupBackground">@color/colorPrimary</color>
+  <!-- ナビゲーションビューの選択されている部分のテキストの色 -->
+  <color name="colorNavigationViewSelectedText">@color/textColorPrimary</color>
+  <!-- ナビゲーションビューのテキストの色 -->
+  <color name="navigationViewTextColorPrimary">@color/textColorPrimaryDark</color>
+  <!-- プログレスバーの色 -->
+  <color name="colorProgressBar">@color/colorAccent</color>
+  <!-- スクロールバーの色 -->
+  <color name="colorScrollBar">@color/colorAccent</color>
 </resources>
