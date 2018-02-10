@@ -30,7 +30,7 @@ class GroupEditActivity : AppCompatActivity() {
         val dbController = DatabaseController(this)
         val groupList = dbController.getAllGroupList()
         if(!groupList.contains(groupName.text.toString())) {
-            DatabaseController(ApplicationDataHolder.appContext!!)
+            DatabaseController(this)
                 .updateGroup(groupName.text.toString(), ApplicationDataHolder.groupName)
           ApplicationDataHolder.groupName = groupName.text.toString()
           activityFinish()

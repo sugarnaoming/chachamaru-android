@@ -19,7 +19,7 @@ import com.sugarnaoming.chachamaru.model.database.DatabaseController
 class FragmentContentMain: android.support.v4.app.Fragment() {
   private lateinit var urlsList: List<ArticleConnectionEntity>
   private var isFistView = true
-  private val dbController = DatabaseController(ApplicationDataHolder.appContext!!)
+  private lateinit var dbController: DatabaseController
 
   override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
     super.onCreateView(inflater, container, savedInstanceState)
@@ -28,13 +28,14 @@ class FragmentContentMain: android.support.v4.app.Fragment() {
 
   override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    dbController = DatabaseController(context)
     urlsList = dbController.getUrlsByGroupNameOf(ApplicationDataHolder.groupName)
   }
 
   override fun onResume() {
     super.onResume()
     val isUpdated = if(isUpdate(urlsList)) {
-      urlsList = DatabaseController(ApplicationDataHolder.appContext!!).getUrlsByGroupNameOf(ApplicationDataHolder.groupName)
+      urlsList = dbController.getUrlsByGroupNameOf(ApplicationDataHolder.groupName)
       true
     } else {false}
     if(isFistView || isUpdated) {
