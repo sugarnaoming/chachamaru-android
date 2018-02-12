@@ -8,4 +8,5 @@
 /build
 /app/release
 /captures
+/docs/img/
 .externalNativeBuild

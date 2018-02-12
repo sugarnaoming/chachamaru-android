@@ -1,0 +1,99 @@
+@import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css);
+@import url(sanitize.css);
+body {
+  font-family: 'Noto Sans JP';
+  background-color: #33691E; }
+  body .text-accent {
+    color: #FFD445; }
+  body header {
+    height: 20rem;
+    background-color: #003d00; }
+    body header h1 {
+      padding: 3rem 0 0 0;
+      margin: 0;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 5rem; }
+    body header p {
+      width: 362px;
+      margin: 0 auto;
+      color: #FFFFFF; }
+      body header p a {
+        width: 200px;
+        height: 77.4px; }
+        body header p a img {
+          width: 200px;
+          height: 77.4px; }
+  body section {
+    width: 1360px;
+    margin: 3rem auto; }
+    body section h1 {
+      font-size: 2.5rem;
+      margin: 0 auto;
+      color: #FFFFFF;
+      text-align: center; }
+    body section p {
+      margin: 0 auto;
+      width: 30rem; }
+  body .summary p {
+    width: 31rem;
+    height: 7rem;
+    padding: 2rem 1rem;
+    border-radius: 10px;
+    color: #F5F5F5;
+    background: #124700; }
+  body .function-description {
+    display: grid;
+    grid-template-rows: 3rem 40rem 40rem;
+    grid-template-columns: 700px 700px; }
+    body .function-description figure {
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #124700; }
+      body .function-description figure img {
+        width: 300px;
+        height: 498px;
+        margin: 0;
+        padding: 0 auto;
+        text-align: center; }
+      body .function-description figure figcaption {
+        font-size: 1.5rem;
+        text-align: center;
+        color: #FFFFFF; }
+    body .function-description .fun-desc--title {
+      grid-row: 1 / 2;
+      grid-column: 1 / 3; }
+    body .function-description .fun-desc--control {
+      grid-row: 2 / 3;
+      grid-column: 1 / 2; }
+      body .function-description .fun-desc--control figcaption {
+        padding-top: 2rem; }
+    body .function-description .fun-desc--stock {
+      grid-row: 2 / 3;
+      grid-column: 2 / 3; }
+      body .function-description .fun-desc--stock figcaption {
+        padding-top: 2rem; }
+    body .function-description .fun-desc--share {
+      grid-row: 3 / 4;
+      grid-column: 1/ 2; }
+      body .function-description .fun-desc--share figcaption {
+        padding-top: 2rem; }
+    body .function-description .fun-desc--json {
+      grid-row: 3 / 4;
+      grid-column: 2 / 3; }
+      body .function-description .fun-desc--json figcaption {
+        padding-top: 1rem; }
+  body .json-document .json-content {
+    width: 35rem;
+    padding: 2rem 1rem;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #124700; }
+    body .json-document .json-content .json-gist {
+      width: 30rem;
+      margin: 0 auto; }
+    body .json-document .json-content p {
+      color: #F5F5F5;
+      background: #124700; }
+
+/*# sourceMappingURL=main.css.map */

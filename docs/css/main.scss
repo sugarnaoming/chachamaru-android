@@ -1,0 +1,144 @@
+@import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css);
+@import "sanitize.css";
+
+$primary-color: #33691E;
+$primary-dark-color: #003d00;
+$primary-light-color: #124700;
+$primary-accent-color: #FFD445;
+$secondly-color: #FFFFFF;
+$primary-text-color: #FFFFFF;
+$primary-dark-text-color: #F5F5F5;
+
+body {
+  font-family: 'Noto Sans JP';
+  background-color: $primary-color;
+  .text-accent {
+      color: $primary-accent-color;
+  }
+  header {
+    height: 20rem;
+    background-color: $primary-dark-color;
+    h1 {
+      padding: 3rem 0 0 0;
+      margin: 0;
+      color: $primary-text-color;
+      text-align: center;
+      font-size: 5rem;
+    }
+    p {
+      width: 362px;
+      margin: 0 auto;
+      color: $primary-text-color;
+      a {
+        width: 200px;
+        height: 77.4px;
+        img {
+          width: 200px;
+          height: 77.4px;
+        }
+      }
+    }
+  }
+  section {
+    width: 1360px;
+    margin: 3rem auto;
+    h1 {
+      font-size: 2.5rem;
+      margin: 0 auto;
+      color: $primary-text-color;
+      text-align: center;
+    }
+    p {
+      margin: 0 auto;
+      width: 30rem;
+    }
+
+  }
+  .summary {
+    p {
+      width: 31rem;
+      height: 7rem;
+      padding: 2rem 1rem;
+      border-radius: 10px;
+      color: $primary-dark-text-color;
+      background: $primary-light-color;
+    }
+  }
+  .function-description {
+    display: grid;
+    grid-template-rows: 3rem 40rem 40rem;
+    grid-template-columns: 700px 700px;
+    figure {
+      padding: 10px;
+      border-radius: 10px;
+      background-color: $primary-light-color;
+      .figure-images {
+
+      }
+      img {
+        width: 300px;
+        height: 498px;
+        margin: 0;
+        padding: 0 auto;
+        text-align: center;
+      }
+      figcaption {
+        font-size: 1.5rem;
+        text-align: center;
+        color: $primary-text-color;
+      }
+    }
+    .fun-desc--title {
+      grid-row: 1 / 2;
+      grid-column: 1 / 3;
+    }
+    .fun-desc--control {
+      grid-row: 2 / 3;
+      grid-column: 1 / 2;
+      figcaption {
+        padding-top: 2rem;
+      }
+    }
+    .fun-desc--stock {
+      grid-row: 2 / 3;
+      grid-column: 2 / 3;
+      figcaption {
+        padding-top: 2rem;
+      }
+    }
+    .fun-desc--share {
+      grid-row: 3 / 4;
+      grid-column: 1/ 2;
+      figcaption {
+        padding-top: 2rem;
+      }
+    }
+    .fun-desc--json {
+      grid-row: 3 / 4;
+      grid-column: 2 / 3;
+      figcaption {
+        padding-top: 1rem;
+      }
+    }
+  }
+  .json-document {
+    h1 {
+
+    }
+    .json-content {
+      width: 35rem;
+      padding: 2rem 1rem;
+      margin: 0 auto;
+      border-radius: 10px;
+      background-color: $primary-light-color;
+      .json-gist {
+        width: 30rem;
+        margin: 0 auto;
+      }
+      p {
+        color: $primary-dark-text-color;
+        background: $primary-light-color;
+      }
+    }
+  }
+}
