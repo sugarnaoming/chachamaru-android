@@ -9,11 +9,11 @@ body {
     height: 20rem;
     background-color: #003d00; }
     body header h1 {
-      padding: 3rem 0 0 0;
+      padding: 1rem 0 0 0;
       margin: 0;
       color: #FFFFFF;
       text-align: center;
-      font-size: 5rem; }
+      font-size: 8rem; }
     body header p {
       width: 362px;
       margin: 0 auto;
