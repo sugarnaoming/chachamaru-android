@@ -18,6 +18,7 @@ body {
   header {
     height: 20rem;
     background-color: $primary-dark-color;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
     h1 {
       padding: 1rem 0 0 0;
       margin: 0;
@@ -62,6 +63,7 @@ body {
       border-radius: 10px;
       color: $primary-dark-text-color;
       background: $primary-light-color;
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
     }
   }
   .function-description {
@@ -72,6 +74,7 @@ body {
       padding: 10px;
       border-radius: 10px;
       background-color: $primary-light-color;
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
       .figure-images {
 
       }
@@ -131,6 +134,7 @@ body {
       margin: 0 auto;
       border-radius: 10px;
       background-color: $primary-light-color;
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
       .json-gist {
         width: 30rem;
         margin: 0 auto;

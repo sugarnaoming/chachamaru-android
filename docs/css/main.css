@@ -7,7 +7,8 @@ body {
     color: #FFD445; }
   body header {
     height: 20rem;
-    background-color: #003d00; }
+    background-color: #003d00;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); }
     body header h1 {
       padding: 1rem 0 0 0;
       margin: 0;
@@ -41,7 +42,8 @@ body {
     padding: 2rem 1rem;
     border-radius: 10px;
     color: #F5F5F5;
-    background: #124700; }
+    background: #124700;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); }
   body .function-description {
     display: grid;
     grid-template-rows: 3rem 40rem 40rem;
@@ -49,7 +51,8 @@ body {
     body .function-description figure {
       padding: 10px;
       border-radius: 10px;
-      background-color: #124700; }
+      background-color: #124700;
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); }
       body .function-description figure img {
         width: 300px;
         height: 498px;
@@ -88,7 +91,8 @@ body {
     padding: 2rem 1rem;
     margin: 0 auto;
     border-radius: 10px;
-    background-color: #124700; }
+    background-color: #124700;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); }
     body .json-document .json-content .json-gist {
       width: 30rem;
       margin: 0 auto; }
