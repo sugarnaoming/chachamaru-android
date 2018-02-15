@@ -2,11 +2,15 @@
 @import url(sanitize.css);
 body {
   font-family: 'Noto Sans JP';
-  background-color: #33691E; }
+  background-color: #33691E;
+  display: grid;
+  grid-template-rows: 20rem 15rem 86rem 31rem;
+  grid-template-columns: 5rem 1fr 1fr 5rem; }
   body .text-accent {
     color: #FFD445; }
   body header {
-    height: 20rem;
+    grid-row: 1 / 2;
+    grid-column: 2 / 4;
     background-color: #003d00;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); }
     body header h1 {
@@ -36,29 +40,41 @@ body {
     body section p {
       margin: 0 auto;
       width: 30rem; }
-  body .summary p {
-    width: 31rem;
-    height: 7rem;
-    padding: 2rem 1rem;
-    border-radius: 10px;
-    color: #F5F5F5;
-    background: #124700;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); }
+  body .summary {
+    grid-row: 2 / 3;
+    grid-column: 2 / 4;
+    margin-top: 48px;
+    margin-bottom: 0px; }
+    body .summary p {
+      width: 31rem;
+      height: 7rem;
+      padding: 2rem 1rem;
+      border-radius: 10px;
+      color: #F5F5F5;
+      background: #124700;
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); }
   body .function-description {
+    grid-row: 3 / 4;
+    grid-column: 2 / 4;
     display: grid;
     grid-template-rows: 3rem 40rem 40rem;
-    grid-template-columns: 700px 700px; }
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 0; }
     body .function-description figure {
+      margin: 16px 24px;
       padding: 10px;
       border-radius: 10px;
       background-color: #124700;
       box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); }
-      body .function-description figure img {
-        width: 300px;
-        height: 498px;
-        margin: 0;
-        padding: 0 auto;
-        text-align: center; }
+      body .function-description figure .figure-images {
+        margin: 0 auto;
+        width: 600px; }
+        body .function-description figure .figure-images img {
+          width: 300px;
+          height: 498px;
+          margin: 0;
+          padding: 0 auto;
+          text-align: center; }
       body .function-description figure figcaption {
         font-size: 1.5rem;
         text-align: center;
@@ -86,18 +102,22 @@ body {
       grid-column: 2 / 3; }
       body .function-description .fun-desc--json figcaption {
         padding-top: 1rem; }
-  body .json-document .json-content {
-    width: 35rem;
-    padding: 2rem 1rem;
-    margin: 0 auto;
-    border-radius: 10px;
-    background-color: #124700;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); }
-    body .json-document .json-content .json-gist {
-      width: 30rem;
-      margin: 0 auto; }
-    body .json-document .json-content p {
-      color: #F5F5F5;
-      background: #124700; }
+  body .json-document {
+    grid-row: 4 / 5;
+    grid-column: 2 / 4;
+    margin-top: 48px; }
+    body .json-document .json-content {
+      width: 35rem;
+      padding: 2rem 1rem;
+      margin: 0 auto;
+      border-radius: 10px;
+      background-color: #124700;
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4); }
+      body .json-document .json-content .json-gist {
+        width: 30rem;
+        margin: 0 auto; }
+      body .json-document .json-content p {
+        color: #F5F5F5;
+        background: #124700; }
 
 /*# sourceMappingURL=main.css.map */
