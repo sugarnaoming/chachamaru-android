@@ -21,14 +21,14 @@ class FragmentContentMain: android.support.v4.app.Fragment() {
   private var isFistView = true
   private lateinit var dbController: DatabaseController
 
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     super.onCreateView(inflater, container, savedInstanceState)
     return inflater!!.inflate(R.layout.fragment_content_main, container, false)
   }
 
-  override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    dbController = DatabaseController(context)
+    dbController = DatabaseController(context!!)
     urlsList = dbController.getUrlsByGroupNameOf(ApplicationDataHolder.groupName)
   }
 
@@ -62,7 +62,7 @@ class FragmentContentMain: android.support.v4.app.Fragment() {
             // ページのタイトルを返す
             override fun getPageTitle(position: Int): CharSequence = urlsList[position].title
             // これを追加するとFragmentを再生成する
-            override fun getItemPosition(`object`: Any?): Int = PagerAdapter.POSITION_NONE
+            override fun getItemPosition(`object`: Any): Int = PagerAdapter.POSITION_NONE
           }
           tablayout.setupWithViewPager(viewPager)
           this.isFistView = false

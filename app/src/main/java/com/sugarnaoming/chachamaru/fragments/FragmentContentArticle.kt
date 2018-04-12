@@ -28,6 +28,7 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
   private lateinit var _view: View
   private var error: Errors? = null
   private val articles: MutableList<ArticleEntity> = mutableListOf()
+  private lateinit var swipeRefresh: SwipeRefreshLayout
 
   // 選択されたタブが画面に表示された時にAPIを実行
   override fun setUserVisibleHint(isVisibleToUser: Boolean) {
@@ -65,7 +66,7 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
     super.onViewCreated(view, savedInstanceState)
     this.recyclerView = view!!.findViewById(R.id.article_recycler_view)
     this._view = view
-    val swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
+    swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
     swipeRefresh.run {
       setColorSchemeColors(ContextCompat.getColor(context, R.color.colorAccent))
       setProgressBackgroundColorSchemeColor(ContextCompat.getColor(context, R.color.colorPrimary))
@@ -117,6 +118,7 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
   @Subscribe
   fun onFailureSubscribe(failure: SubscribeFailure) {
     this._view.findViewById<ProgressBar>(R.id.progressBar).visibility = View.INVISIBLE
+    swipeRefresh.isRefreshing = false
     error!!.showMessage(activity!!, failure.t)
   }
 }

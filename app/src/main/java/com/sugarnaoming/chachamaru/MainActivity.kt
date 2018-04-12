@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     nav_view.setNavigationItemSelectedListener(this)
     try {
       firstViewFragment()
-    }catch (e: BadRequestException) { createExceptionDialog(e)
+    }catch (e: BadRequestException) {
+      createExceptionDialog(e)
     }catch (e: Exception) {createExceptionDialog(e) }
   }
 
