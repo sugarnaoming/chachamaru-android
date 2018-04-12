@@ -40,7 +40,7 @@ class Api {
         .build()
 
     val service: ApiUrl = retrofit.create(ApiUrl::class.java)
-    service.getArticles(urlHolder.urlPath).enqueue(object : Callback<List<ArticleEntity>> {
+    service.getArticles(urlHolder.fullUrl).enqueue(object : Callback<List<ArticleEntity>> {
       override fun onFailure(call: Call<List<ArticleEntity>>?, t: Throwable?) {
         executeFailure(t!!)
       }
@@ -59,7 +59,7 @@ class Api {
         .addConverterFactory(ScalarsConverterFactory.create())
         .build()
     val service: RssUrl = retrofit.create(RssUrl::class.java)
-    service.getArticles(urlHolder.urlPath).enqueue(object: Callback<String> {
+    service.getArticles(urlHolder.fullUrl).enqueue(object: Callback<String> {
       override fun onFailure(call: Call<String>?, t: Throwable?) {
         executeFailure(t!!)
       }
