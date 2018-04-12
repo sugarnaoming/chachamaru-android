@@ -36,7 +36,7 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
     error = Errors(true)
     if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this)
     EventBus.getDefault().register(this)
-    this.articleConnectionInfo = arguments.getSerializable("ArticleConnectionInfo") as ArticleConnectionEntity
+    this.articleConnectionInfo = arguments!!.getSerializable("ArticleConnectionInfo") as ArticleConnectionEntity
     ApplicationDataHolder.tabName = this.articleConnectionInfo.title
     ApplicationDataHolder.tabUrl = this.articleConnectionInfo.url
     ApplicationDataHolder.isRss = this.articleConnectionInfo.isRssUrl
@@ -57,11 +57,11 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
     error = Errors(true)
   }
 
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return inflater!!.inflate(R.layout.fragment_content_article, container, false)
   }
 
-  override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     this.recyclerView = view!!.findViewById(R.id.article_recycler_view)
     this._view = view
@@ -117,6 +117,6 @@ class FragmentContentArticle: android.support.v4.app.Fragment() {
   @Subscribe
   fun onFailureSubscribe(failure: SubscribeFailure) {
     this._view.findViewById<ProgressBar>(R.id.progressBar).visibility = View.INVISIBLE
-    error!!.showMessage(activity, failure.t)
+    error!!.showMessage(activity!!, failure.t)
   }
 }
